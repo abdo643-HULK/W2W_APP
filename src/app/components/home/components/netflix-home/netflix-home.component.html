@@ -4,15 +4,17 @@
         <!--Beginn von Netflix Logo-->
         <div class="column full-half-third">
             <div class="center-pic">
-                <img id="netflix-logo" src="./assets/640px-Netflix_2015_logo.svg.png"/>
+                <img id="netflix-logo" src="./assets/640px-Netflix_2015_logo.svg.png" />
             </div>
         </div>
         <!--Ende von Netflix Logo Column-->
         <div class="column full-half-2third">
             <div id="flex-col" class="tabs is-centered is-boxed">
                 <ul>
-                    <li class="netflixtab is-active" (click)="openTab($event,'netflix-cs','netflix-tab','netflixtab')"><a>Recently Released</a></li>
-                    <li class="netflixtab" (click)="openTab($event,'netflix-leaving','netflix-tab','netflixtab')"><a>Leaving Soon</a></li>
+                    <li class="netflixtab is-active" (click)="openTab($event,'netflix-cs','netflix-tab','netflixtab')">
+                        <a>Recently Released</a></li>
+                    <li class="netflixtab" (click)="openTab($event,'netflix-leaving','netflix-tab','netflixtab')">
+                        <a>Leaving Soon</a></li>
                 </ul>
             </div>
             <div class="container">
@@ -24,18 +26,20 @@
                                 <div class="swiper-slide">
                                     <div class="flip-card">
                                         <div class="flip-card-front">
-                                            <img class="border-picture" src="{{cs?.image}}" alt="{{cs?.title}}" style=" height: 100%; width: 100%;"/>
+                                            <img class="border-picture" src="{{cs?.image}}" alt="{{cs?.title}}"
+                                                title="{{cs?.title}}" loading="lazy"
+                                                style=" height: 100%; width: 100%;" />
                                         </div>
                                         <div class="flip-card-back">
                                             <h1>Title: <br>{{cs?.title}}</h1>
-                                            <p>Watch: 
+                                            <p>Watch:
                                                 <a href="https://www.netflix.com/title/{{cs?.netflixid}}">
                                                     <p>
                                                         <fa-icon [icon]="faPlayCircle"></fa-icon>
                                                     </p>
                                                 </a>
                                             </p>
-                                            <p>Type: {{cs?.type}}</p> 
+                                            <p>Type: {{cs?.type}}</p>
                                             <p>Rating: <br>{{cs?.rating}}</p>
                                             <p>Added: <br>{{cs?.unogsdate}}</p>
                                         </div>
@@ -60,22 +64,24 @@
                                 <div class="swiper-slide">
                                     <div class="flip-card">
                                         <div class="flip-card-front">
-                                            <img class="border-picture" src="{{ls?.image}}" alt="{{ls?.title}}" style=" height: 100%; width: 100%;"/>
+                                            <img class="border-picture" src="{{ls?.image}}" alt="{{ls?.title}}"
+                                                title="{{ls?.title}}" loading="lazy"
+                                                style=" height: 100%; width: 100%;" />
                                         </div>
                                         <div class="flip-card-back">
                                             <h1>Title: <br>{{ls?.title}}</h1>
-                                            <p>Watch: 
+                                            <p>Watch:
                                                 <a href="https://www.netflix.com/title/{{ls?.netflixid}}">
                                                     <p>
                                                         <fa-icon [icon]="faPlayCircle"></fa-icon>
-                                                    </p>                                                
+                                                    </p>
                                                 </a>
                                             </p>
                                             <p>Type: {{ls?.type}}</p>
                                             <p>Rating: <br>{{ls?.rating}}</p>
                                             <p>Leaves: <br>{{ls?.unogsdate}}</p>
                                         </div>
-                                    </div>                                
+                                    </div>
                                 </div>
                             </ng-container>
                         </div>

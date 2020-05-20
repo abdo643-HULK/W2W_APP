@@ -1,6 +1,21 @@
-import { Component, OnInit, ElementRef, EventEmitter, Input, Output, AfterViewInit, Renderer2, ViewChild } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  AfterViewInit,
+  Renderer2,
+  ViewChild,
+} from "@angular/core";
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpParams,
+  HttpResponse,
+} from "@angular/common/http";
+import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 /*import { isPlatformBrowser } from '@angular/common';*/
 
 interface netflixData {
@@ -9,66 +24,76 @@ interface netflixData {
   proto: any;
 }
 class obj {
-    COUNT: string;
-    ITEMS: Array<Item>;
-    proto: any;
+  COUNT: string;
+  ITEMS: Array<Item>;
+  proto: any;
 }
 class Item {
-    netflixid: string;
-    title: string;
-    image: string;
-    synopsis: string;
-    rating: string;
-    type: string;
-    released: string;
-    runtime: string;
-    largeimage: string;
-    unogsdate: string;
-    imdbid: string;
-    download: string;
+  netflixid: string;
+  title: string;
+  image: string;
+  synopsis: string;
+  rating: string;
+  type: string;
+  released: string;
+  runtime: string;
+  largeimage: string;
+  unogsdate: string;
+  imdbid: string;
+  download: string;
 }
 
 @Component({
-  selector: 'app-netflix-home',
-  templateUrl: './netflix-home.component.html',
-  styleUrls: ['./netflix-home.component.css']
+  selector: "app-netflix-home",
+  templateUrl: "./netflix-home.component.html",
+  styleUrls: ["./netflix-home.component.css"],
 })
-
-
 export class NetflixHomeComponent implements OnInit {
-  dataValue: obj = new obj;
-  expire: obj = new obj;
+  dataValue: obj = new obj();
+  expire: obj = new obj();
   private isDataAvailable: boolean = false;
-  @ViewChild('SwiperWrapperCS', { static: false }) cs: ElementRef;
-  @ViewChild('SwiperWrapperLS', { static: false }) ls: ElementRef;
+  @ViewChild("SwiperWrapperCS", { static: false }) cs: ElementRef;
+  @ViewChild("SwiperWrapperLS", { static: false }) ls: ElementRef;
   @Output() tab = new EventEmitter();
 
   faPlayCircle = faPlayCircle;
 
+  headers = new HttpHeaders()
+    .set("x-rapidapi-host", "unogs-unogs-v1.p.rapidapi.com")
+    .set("x-rapidapi-key", "2e75f12489msh4881df0eea4530ap1d9974jsnb1c9075c37c4")
+    .append("Content-Type", "application/json");
 
-  headers = new HttpHeaders().set('x-rapidapi-host', 'unogs-unogs-v1.p.rapidapi.com')
-  .set('x-rapidapi-key', '2e75f12489msh4881df0eea4530ap1d9974jsnb1c9075c37c4')
-  .append('Content-Type', 'application/json');
-
-  constructor(private http: HttpClient/*, public element: ElementRef, private rd: Renderer2*/) {
+  constructor(
+    private http: HttpClient /*, public element: ElementRef, private rd: Renderer2*/
+  ) {
     /*this.getNew();
     this.getLeaving();*/
-  } 
+  }
 
   getNew() {
-    this.http.get<netflixData>("https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Anew7%3ADE&p=1&t=ns&st=adv", { headers: this.headers }).
-    subscribe(csdata => { this.dataValue = csdata; /*console.log(this.dataValue);*/ });
+    this.http
+      .get<netflixData>(
+        "https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Anew7%3ADE&p=1&t=ns&st=adv",
+        { headers: this.headers }
+      )
+      .subscribe((csdata) => {
+        this.dataValue = csdata; /*console.log(this.dataValue);*/
+      });
   }
 
   getLeaving() {
-    this.http.get<netflixData>("https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Aexp%3ADE&t=ns&st=adv&p=1", { headers: this.headers }).
-    subscribe(lsdata => { this.expire = lsdata; /*console.log(this.expire);*/ });
+    this.http
+      .get<netflixData>(
+        "https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Aexp%3ADE&t=ns&st=adv&p=1",
+        { headers: this.headers }
+      )
+      .subscribe((lsdata) => {
+        this.expire = lsdata; /*console.log(this.expire);*/
+      });
   }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-  }
-  
   openTab(evt, tabName, swipertab, servicetab) {
     var i, x, tablinks;
     x = document.getElementsByClassName(swipertab);
@@ -123,4 +148,3 @@ export class NetflixHomeComponent implements OnInit {
     }*/
   }
 }
-
