@@ -8,8 +8,6 @@ import {
   Renderer2,
 } from "@angular/core";
 
-import * as $ from "jquery";
-
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -42,11 +40,9 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy() {}
 
   toggleDropDown() {
-    $(document).ready(function () {
-      $(".has-dropdown1 .navbar-link").click(function () {
-        $(".has-dropdown1").toggleClass("is-active");
-      });
-    });
+    document
+      .querySelector(".has-dropdown1 .navbar-link")
+      .classList.toggle("is-active");
   }
 
   changeNavbar() {
