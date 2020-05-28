@@ -22,13 +22,13 @@
                 <div id="netflix-cs" class="netflix-tab">
                     <div class="home swiper-container">
                         <div #SwiperWrapperCS class="home swiper-wrapper">
-                            <ng-container *ngFor="let cs of dataValue.ITEMS">
+                            <ng-container *ngFor="let cs of dataValue | async">
                                 <div class="swiper-slide">
                                     <div class="flip-card">
                                         <div class="flip-card-front">
-                                            <img class="border-picture" src="{{cs?.image}}" alt="{{cs?.title}}"
-                                                title="{{cs?.title}}" loading="lazy"
-                                                style=" height: 100%; width: 100%;" />
+                                            <img  class="border-picture" title="{{cs?.title}}" alt="{{cs?.title}}" [src]="cs?.image"
+                                                  loading="lazy"
+                                                  />
                                         </div>
                                         <div class="flip-card-back">
                                             <h1>Title: <br>{{cs?.title}}</h1>
@@ -60,7 +60,7 @@
                 <div id="netflix-leaving" class="netflix-tab" style="display: none;">
                     <div class="home swiper-container">
                         <div #SwiperWrapperCS class="home swiper-wrapper">
-                            <ng-container *ngFor="let ls of expire.ITEMS">
+                            <ng-container *ngFor="let ls of expire | async">
                                 <div class="swiper-slide">
                                     <div class="flip-card">
                                         <div class="flip-card-front">

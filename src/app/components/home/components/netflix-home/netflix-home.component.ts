@@ -16,135 +16,155 @@ import {
   HttpResponse,
 } from "@angular/common/http";
 import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
+import { map,switchMap,debounceTime,distinct,filter } from 'rxjs/operators';
+import { Subject } from "rxjs";
+// import { Observable } from 'rxjs/internal/Observable';
+
 /*import { isPlatformBrowser } from '@angular/common';*/
 
-interface netflixData {
-  COUNT: string;
-  ITEMS: [];
-  proto: any;
+interface NetflixData {
+	count: string;
+	ITEMS: Item[];
+	proto: any;
 }
-class obj {
-  COUNT: string;
-  ITEMS: Array<Item>;
-  proto: any;
-}
-class Item {
-  netflixid: string;
-  title: string;
-  image: string;
-  synopsis: string;
-  rating: string;
-  type: string;
-  released: string;
-  runtime: string;
-  largeimage: string;
-  unogsdate: string;
-  imdbid: string;
-  download: string;
+interface Item {
+	netflixid: string;
+	title: string;
+	image: string;
+	synopsis: string;
+	rating: string;
+	type: string;
+	released: string;
+	runtime: string;
+	largeimage: string;
+	unogsdate: string;
+	imdbid: string;
+	download: string;
 }
 
 @Component({
-  selector: "app-netflix-home",
-  templateUrl: "./netflix-home.component.html",
-  styleUrls: ["./netflix-home.component.css"],
+	selector: "app-netflix-home",
+	templateUrl: "./netflix-home.component.html",
+	styleUrls: ["./netflix-home.component.css"],
 })
 export class NetflixHomeComponent implements OnInit {
-  dataValue: obj = new obj();
-  expire: obj = new obj();
-  private isDataAvailable: boolean = false;
-  @ViewChild("SwiperWrapperCS", { static: false }) cs: ElementRef;
-  @ViewChild("SwiperWrapperLS", { static: false }) ls: ElementRef;
-  @Output() tab = new EventEmitter();
+	days = "7";
+	country = "DE"
+	dataValue;
+	expire;
+	results;
+	latestSearch = new Subject<string>();
+	private isDataAvailable: boolean = false;
+	@ViewChild("SwiperWrapperCS", { static: false }) cs: ElementRef;
+	@ViewChild("SwiperWrapperLS", { static: false }) ls: ElementRef;
+	@Output() tab = new EventEmitter();
 
-  faPlayCircle = faPlayCircle;
+	faPlayCircle = faPlayCircle;
 
-  headers = new HttpHeaders()
-    .set("x-rapidapi-host", "unogs-unogs-v1.p.rapidapi.com")
-    .set("x-rapidapi-key", "2e75f12489msh4881df0eea4530ap1d9974jsnb1c9075c37c4")
-    .append("Content-Type", "application/json");
+	headers = new HttpHeaders()
+		.set("x-rapidapi-host", "unogs-unogs-v1.p.rapidapi.com")
+		.set("x-rapidapi-key", "2e75f12489msh4881df0eea4530ap1d9974jsnb1c9075c37c4")
+		.append("Content-Type", "application/json");
 
-  constructor(
-    private http: HttpClient /*, public element: ElementRef, private rd: Renderer2*/
-  ) {
-    /*this.getNew();
-    this.getLeaving();*/
-  }
+	constructor(
+		private http: HttpClient /*, public element: ElementRef, private rd: Renderer2*/
+	) {
 
-  getNew() {
-    this.http
-      .get<netflixData>(
-        "https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Anew7%3ADE&p=1&t=ns&st=adv",
-        { headers: this.headers }
-      )
-      .subscribe((csdata) => {
-        this.dataValue = csdata; /*console.log(this.dataValue);*/
-      });
-  }
+		this.getNew();
+		this.getLeaving();
+	}
 
-  getLeaving() {
-    this.http
-      .get<netflixData>(
-        "https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Aexp%3ADE&t=ns&st=adv&p=1",
-        { headers: this.headers }
-      )
-      .subscribe((lsdata) => {
-        this.expire = lsdata; /*console.log(this.expire);*/
-      });
-  }
+	getSearch(term){
+		this.latestSearch.next(term);
+		this.results = this.latestSearch
+		.pipe(
+			debounceTime(500),
+			distinct(),
+			filter(term => !!term),
+			switchMap(term => this.http.get<NetflixData>(`${term}`)
+			.pipe(
+				map(csdata => csdata.ITEMS.map(item => item.title))
+			))
+		);
+	}
 
-  ngOnInit() {}
+	getNew() {
+		const url = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Anew${this.days || 7}%3A${this.country || "DE" }&p=1&t=ns&st=adv`;
+		this.dataValue = this.http
+		.get<NetflixData>(
+			url,
+			{ headers: this.headers }
+		).pipe(map(csdata => csdata.ITEMS ));
+		// .subscribe((csdata) => {
+		//   this.dataValue = csdata; /*console.log(this.dataValue);*/
+		// });
+	}
+	// getLeaving() : Observable<NetflixData[]>{
+	getLeaving(){
+		const url ="https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Aexp%3ADE&t=ns&st=adv&p=1"
+		this.expire = this.http
+		.get<NetflixData>(
+			url,
+			{ headers: this.headers }
+		).pipe(map(lsdata => lsdata.ITEMS || []));
+		// .subscribe((lsdata) => {
+		//   this.expire = lsdata; /*console.log(this.expire);*/
+		// });
+	}
 
-  openTab(evt, tabName, swipertab, servicetab) {
-    var i, x, tablinks;
-    x = document.getElementsByClassName(swipertab);
-    for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName(servicetab);
-    for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
-    }
-    document.getElementById(tabName).style.display = "";
-    evt.currentTarget.className += " is-active";
-  }
+	ngOnInit() {}
 
-  /*openTab(tabName,swipertab) {
-    this.tab.emit({Name: tabName, Swiper:swipertab});
-  }*/
+	openTab(evt, tabName, swipertab, servicetab) {
+		var i, x, tablinks;
+		x = document.getElementsByClassName(swipertab);
+		for (i = 0; i < x.length; i++) {
+		x[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName(servicetab);
+		for (i = 0; i < x.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+		}
+		document.getElementById(tabName).style.display = "";
+		evt.currentTarget.className += " is-active";
+	}
 
-  ngAfterViewInit() {
-    /*if (window.matchMedia("(min-width: 1024px) and (max-width: 2200px)").matches) {
-      let swiperslider = this.rd.createElement("div");
-      this.rd.addClass(swiperslider, 'swiper-slide');
+	/*openTab(tabName,swipertab) {
+		this.tab.emit({Name: tabName, Swiper:swipertab});
+	}*/
 
-      let flipcard = this.rd.createElement('div');
-      this.rd.addClass(flipcard, 'flip-card-inner');
+	ngAfterViewInit() {
+		/*if (window.matchMedia("(min-width: 1024px) and (max-width: 2200px)").matches) {
+		let swiperslider = this.rd.createElement("div");
+		this.rd.addClass(swiperslider, 'swiper-slide');
 
-      let cardfront = this.rd.createElement('div');
-      this.rd.addClass(cardfront, 'flip-card-front');
+		let flipcard = this.rd.createElement('div');
+		this.rd.addClass(flipcard, 'flip-card-inner');
 
-      let image = this.rd.createElement('img');
-      this.rd.setProperty(image, 'src', './assets/prime/cs/Carnival_Row.jpg');
+		let cardfront = this.rd.createElement('div');
+		this.rd.addClass(cardfront, 'flip-card-front');
 
-      let cardback = this.rd.createElement('div');
-      this.rd.addClass(cardback, 'flip-card-back');
+		let image = this.rd.createElement('img');
+		this.rd.setProperty(image, 'src', './assets/prime/cs/Carnival_Row.jpg');
 
-      let title = this.rd.createElement('h1');
-      this.rd.setProperty(title, 'innerHTML', 'John Doe');
+		let cardback = this.rd.createElement('div');
+		this.rd.addClass(cardback, 'flip-card-back');
 
-      this.rd.appendChild(cardback, title);
-      this.rd.appendChild(flipcard, cardback);
-      this.rd.appendChild(cardfront, image);
-      this.rd.appendChild(flipcard, cardfront);
-      this.rd.appendChild(swiperslider, flipcard);
-      this.rd.appendChild(this.cs.nativeElement, swiperslider);
-      this.rd.appendChild(this.ls.nativeElement, swiperslider);
+		let title = this.rd.createElement('h1');
+		this.rd.setProperty(title, 'innerHTML', 'John Doe');
 
-      var sliderflipcard = Array.from(document.getElementsByClassName("swiper-slide") as HTMLCollectionOf<HTMLElement>);
-      sliderflipcard.forEach(function () {
-        this.rd.appendChild(this.cs.nativeElement, flipcard)
-        console.log(this.cs.nativeElement, flipcard);
-      });
-    }*/
-  }
+		this.rd.appendChild(cardback, title);
+		this.rd.appendChild(flipcard, cardback);
+		this.rd.appendChild(cardfront, image);
+		this.rd.appendChild(flipcard, cardfront);
+		this.rd.appendChild(swiperslider, flipcard);
+		this.rd.appendChild(this.cs.nativeElement, swiperslider);
+		this.rd.appendChild(this.ls.nativeElement, swiperslider);
+
+		var sliderflipcard = Array.from(document.getElementsByClassName("swiper-slide") as HTMLCollectionOf<HTMLElement>);
+		sliderflipcard.forEach(function () {
+			this.rd.appendChild(this.cs.nativeElement, flipcard)
+			console.log(this.cs.nativeElement, flipcard);
+		});
+		}*/
+	}
 }

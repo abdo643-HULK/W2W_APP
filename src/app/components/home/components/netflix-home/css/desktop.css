@@ -27,11 +27,17 @@
     overflow: hidden;
   }
 
-  /*Swiper-verti*/
+  .swiper-container,
+  .swiper-wrapper {
+      height: 20vw;
+  }
+
   .swiper-slide {
-    width: calc(100% / 3.4);
-    height: 20vw;
-    border-radius: 5%;
+      width: calc(100% / 3.4);
+      height: 20vw;
+      border-radius: 5%;
+      margin-left: 10px;
+      margin-bottom: 0px !important;
   }
 
   .flip-card-back {
