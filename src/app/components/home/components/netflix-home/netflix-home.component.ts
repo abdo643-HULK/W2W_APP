@@ -55,8 +55,8 @@ export class NetflixHomeComponent implements OnInit {
 	results;
 	latestSearch = new Subject<string>();
 	private isDataAvailable: boolean = false;
-	@ViewChild("SwiperWrapperCS", { static: false }) cs: ElementRef;
-	@ViewChild("SwiperWrapperLS", { static: false }) ls: ElementRef;
+	@ViewChild("SwiperWrapperCS") cs: ElementRef;
+	@ViewChild("SwiperWrapperLS") ls: ElementRef;
 	@Output() tab = new EventEmitter();
 
 	faPlayCircle = faPlayCircle;
