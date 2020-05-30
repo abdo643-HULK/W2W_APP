@@ -1,23 +1,23 @@
 import {
-  Component,
-  OnInit,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  AfterViewInit,
-  Renderer2,
-  ViewChild,
-} from "@angular/core";
+	Component,
+	OnInit,
+	ElementRef,
+	EventEmitter,
+	Input,
+	Output,
+	AfterViewInit,
+	Renderer2,
+	ViewChild
+} from '@angular/core';
 import {
-  HttpClient,
-  HttpHeaders,
-  HttpParams,
-  HttpResponse,
-} from "@angular/common/http";
-import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
-import { map,switchMap,debounceTime,distinct,filter } from 'rxjs/operators';
-import { Subject } from "rxjs";
+	HttpClient,
+	HttpHeaders,
+	HttpParams,
+	HttpResponse
+} from '@angular/common/http';
+import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import { map, switchMap, debounceTime, distinct, filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 // import { Observable } from 'rxjs/internal/Observable';
 
 /*import { isPlatformBrowser } from '@angular/common';*/
@@ -43,70 +43,70 @@ interface Item {
 }
 
 @Component({
-	selector: "app-netflix-home",
-	templateUrl: "./netflix-home.component.html",
-	styleUrls: ["./netflix-home.component.css"],
+	selector: 'app-netflix-home',
+	templateUrl: './netflix-home.component.html',
+	styleUrls: ['./netflix-home.component.css']
 })
 export class NetflixHomeComponent implements OnInit {
-	days = "7";
-	country = "DE"
+	days = '7';
+	country = 'DE';
 	dataValue;
 	expire;
 	results;
 	latestSearch = new Subject<string>();
 	private isDataAvailable: boolean = false;
-	@ViewChild("SwiperWrapperCS") cs: ElementRef;
-	@ViewChild("SwiperWrapperLS") ls: ElementRef;
+	@ViewChild('SwiperWrapperCS') cs: ElementRef;
+	@ViewChild('SwiperWrapperLS') ls: ElementRef;
 	@Output() tab = new EventEmitter();
 
 	faPlayCircle = faPlayCircle;
 
 	headers = new HttpHeaders()
-		.set("x-rapidapi-host", "unogs-unogs-v1.p.rapidapi.com")
-		.set("x-rapidapi-key", "2e75f12489msh4881df0eea4530ap1d9974jsnb1c9075c37c4")
-		.append("Content-Type", "application/json");
+		.set('x-rapidapi-host', 'unogs-unogs-v1.p.rapidapi.com')
+		.set(
+			'x-rapidapi-key',
+			'2e75f12489msh4881df0eea4530ap1d9974jsnb1c9075c37c4'
+		)
+		.append('Content-Type', 'application/json');
 
 	constructor(
 		private http: HttpClient /*, public element: ElementRef, private rd: Renderer2*/
 	) {
-
-		this.getNew();
-		this.getLeaving();
+		// this.getNew();
+		// this.getLeaving();
 	}
 
-	getSearch(term){
+	getSearch(term) {
 		this.latestSearch.next(term);
-		this.results = this.latestSearch
-		.pipe(
+		this.results = this.latestSearch.pipe(
 			debounceTime(500),
 			distinct(),
 			filter(term => !!term),
-			switchMap(term => this.http.get<NetflixData>(`${term}`)
-			.pipe(
-				map(csdata => csdata.ITEMS.map(item => item.title))
-			))
+			switchMap(term =>
+				this.http
+					.get<NetflixData>(`${term}`)
+					.pipe(map(csdata => csdata.ITEMS.map(item => item.title)))
+			)
 		);
 	}
 
 	getNew() {
-		const url = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Anew${this.days || 7}%3A${this.country || "DE" }&p=1&t=ns&st=adv`;
+		const url = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Anew${this
+			.days || 7}%3A${this.country || 'DE'}&p=1&t=ns&st=adv`;
 		this.dataValue = this.http
-		.get<NetflixData>(
-			url,
-			{ headers: this.headers }
-		).pipe(map(csdata => csdata.ITEMS ));
+			.get<NetflixData>(url, { headers: this.headers })
+			.pipe(map(csdata => csdata.ITEMS));
 		// .subscribe((csdata) => {
 		//   this.dataValue = csdata; /*console.log(this.dataValue);*/
 		// });
 	}
 	// getLeaving() : Observable<NetflixData[]>{
-	getLeaving(){
-		const url ="https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Aexp%3ADE&t=ns&st=adv&p=1"
+	getLeaving() {
+		const url =
+			'https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Aexp%3ADE&t=ns&st=adv&p=1';
 		this.expire = this.http
-		.get<NetflixData>(
-			url,
-			{ headers: this.headers }
-		).pipe(map(lsdata => lsdata.ITEMS || []));
+			.get<NetflixData>(url, { headers: this.headers })
+			.pipe(map(lsdata => lsdata.ITEMS || []));
 		// .subscribe((lsdata) => {
 		//   this.expire = lsdata; /*console.log(this.expire);*/
 		// });
@@ -118,14 +118,17 @@ export class NetflixHomeComponent implements OnInit {
 		var i, x, tablinks;
 		x = document.getElementsByClassName(swipertab);
 		for (i = 0; i < x.length; i++) {
-		x[i].style.display = "none";
+			x[i].style.display = 'none';
 		}
 		tablinks = document.getElementsByClassName(servicetab);
 		for (i = 0; i < x.length; i++) {
-		tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+			tablinks[i].className = tablinks[i].className.replace(
+				' is-active',
+				''
+			);
 		}
-		document.getElementById(tabName).style.display = "";
-		evt.currentTarget.className += " is-active";
+		document.getElementById(tabName).style.display = '';
+		evt.currentTarget.className += ' is-active';
 	}
 
 	/*openTab(tabName,swipertab) {

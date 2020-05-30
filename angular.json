@@ -31,7 +31,8 @@
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/swiper/js/swiper.min.js"
-            ]          },
+            ]
+          },
           "configurations": {
             "production": {
               "fileReplacements": [
@@ -123,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "W2WAPP"
+    }
+  },
+  "defaultProject": "W2WAPP",
+  "cli": {
+    "analytics": false
+  }
 }

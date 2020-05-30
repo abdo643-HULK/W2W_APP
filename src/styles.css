@@ -13,17 +13,12 @@ img {
   -o-user-select: none;
   user-select: none;
 }
-.swiper-container,
-.swiper-wrapper,
-.swiper-slide {
-  height: 20vw;
-}
 
 /*Swiper*/
 .swiper-container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+ 	width: 100%;
+ 	margin-left: auto;
+  	margin-right: auto;
 }
 .tabs ul {
   /* justify-content: center; */
@@ -109,6 +104,8 @@ img {
     flex: 0 0 67%;
   }
 }
+
+
 /*Tablet and Phones*/
 @media screen and (max-width: 1024px) {
   /* This container is needed to position the front and back side */
