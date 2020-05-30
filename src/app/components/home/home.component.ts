@@ -14,7 +14,7 @@ import { fromEvent, Observable, Subscription } from "rxjs";*/
 	styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-	mySwiper: Swiper; //Die Variable, die die Swiper bindet
+	mySwiper; //Die Variable, die die Swiper bindet
 	faPlayCircle = faPlayCircle;
 
 	constructor() {}
@@ -79,28 +79,35 @@ export class HomeComponent implements OnInit, AfterViewInit {
 			).matches
 		) {
 			this.mySwiper = this.mobileTabletSwiper();
+			// this.mySwiper.push(this.mobileTabletSwiper());
 		} else if (
 			window.matchMedia(
 				'(min-width: 1024px) and (max-width: 2200px) and (orientation: landscape)'
 			).matches
 		) {
 			this.mySwiper = this.desktopMonitorSwiper();
+			// this.mySwiper.push(this.desktopMonitorSwiper());
 		} else if (window.matchMedia('(min-width: 2201px)').matches) {
 			this.mySwiper = this.tvSwiper();
+			// this.mySwiper.push(this.tvSwiper());
 		} else {
 			this.mySwiper = this.desktopMonitorSwiper();
+			// this.mySwiper.push(this.desktopMonitorSwiper());
 		}
+		console.log(this.mySwiper);
 	}
 
 	ngOnInit() {
 		this.swiperInit();
+		console.log(this.mySwiper);
 	}
 
 	initSwiperOnResize() {
 		if (this.mySwiper != null) {
-			this.mySwiper.destroy(true, true);
+			this.mySwiper.forEach(element => {
+				element.destroy(true, true);
+			});
 			this.swiperInit();
-			this.mySwiper.update();
 		}
 	}
 
@@ -110,7 +117,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 		);
 		swipercontainer.style.background = 'black';
 	}
-	/*ngOnDestroy() {
-    //this.resizeSubscription$.unsubscribe()
-    }*/
+	// ngOnDestroy() {
+	// 	this.resizeSubscription$.unsubscribe()
+	// }
 }
