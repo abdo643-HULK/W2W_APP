@@ -9,5 +9,6 @@ export class DisneyComponent implements OnInit, AfterViewInit {
 	constructor() {}
 
 	ngOnInit() {}
+
 	ngAfterViewInit() {}
 }
