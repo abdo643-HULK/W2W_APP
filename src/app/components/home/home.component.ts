@@ -4,9 +4,8 @@ import {
 	AfterViewInit /*HostListener, ElementRef , ViewChild, Renderer2*/
 } from '@angular/core';
 import Swiper from 'swiper';
-import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
-/*import { Navigation, Pagination, Scrollbar,Autoplay,Parallax,EffectFade } from 'swiper/js/swiper.esm.js';
-import { fromEvent, Observable, Subscription } from "rxjs";*/
+// import { Navigation, Pagination, Scrollbar,Autoplay,Parallax,EffectFade } from 'swiper/js/swiper.esm.js';
+// import { fromEvent, Observable, Subscription } from "rxjs";
 
 @Component({
 	selector: 'app-home',
@@ -14,21 +13,21 @@ import { fromEvent, Observable, Subscription } from "rxjs";*/
 	styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-	mySwiper; //Die Variable, die die Swiper bindet
-	faPlayCircle = faPlayCircle;
+	mySwiper;
 
 	constructor() {}
 
 	mobileTabletSwiper() {
 		return new Swiper('.home.swiper-container', {
-			direction: 'horizontal', //bestimmt die Richtung in der sich die Swiper bewegen sollen
-			slidesPerView: 'auto', //Die Anzahl der Slides, die Angezeigt werden sollen, bei auto werden diese durch die Breite in CSS bestimmt
-			spaceBetween: 10, //Abstand zwischen den Slides: 10px
-			freeMode: true, //keine Zentrierung oder Gruppierung der Slides beim Durchschauen
-			observer: true, //Erkennt Veränderungen im Style und reinitialisiert den Swiepr
+			direction: 'horizontal',
+			slidesPerView: 'auto',
+			spaceBetween: 10,
+			freeMode: true,
+			observer: true,
 			observeParents: true
 		});
 	}
+
 	desktopMonitorSwiper() {
 		return new Swiper('.home.swiper-container', {
 			direction: 'vertical',
@@ -49,6 +48,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 			}
 		});
 	}
+
 	tvSwiper() {
 		return new Swiper('.home.swiper-container', {
 			direction: 'horizontal',
@@ -70,6 +70,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 			}
 		});
 	}
+
 	swiperInit() {
 		if (window.matchMedia('(max-width: 1023px)').matches) {
 			this.mySwiper = this.mobileTabletSwiper();
@@ -98,20 +99,26 @@ export class HomeComponent implements OnInit, AfterViewInit {
 	}
 
 	ngOnInit() {
-		this.swiperInit();
-		console.log(this.mySwiper);
+		// this.swiperInit();
+		// console.log(this.mySwiper);
 	}
 
 	initSwiperOnResize() {
 		if (this.mySwiper != null) {
-			this.mySwiper.forEach(element => {
-				element.destroy(true, true);
-			});
+			this.mySwiper.forEach(
+				(element: {
+					destroy: (arg0: boolean, arg1: boolean) => void;
+				}) => {
+					element.destroy(true, true);
+				}
+			);
 			this.swiperInit();
 		}
 	}
 
 	ngAfterViewInit() {
+		this.swiperInit();
+		console.log(this.mySwiper);
 		let swipercontainer = <HTMLElement>(
 			document.querySelector('.billboard.swiper-container')
 		);

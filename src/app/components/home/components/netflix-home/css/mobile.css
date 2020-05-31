@@ -1,14 +1,13 @@
-@media screen and (max-width: 500px) and (orientation: portrait)
-{
-	.swiper-wrapper{
+@media screen and (max-width: 500px) and (orientation: portrait) {
+	.swiper-wrapper {
 		height: auto;
 	}
-	.swiper-slide{
+	.swiper-slide {
 		width: 44%;
 	}
 
 	/*Tabs*/
-	.columns{
+	.columns {
 		margin: 20px;
 	}
 
@@ -18,37 +17,36 @@
 		color: white;
 		/*transform: rotateY(180deg);*/
 	}
-    #flex-col{
+	#flex-col {
 		margin-bottom: 1%;
 		overflow: hidden;
 	}
 
 	/*Services Swiper Buttons*/
-	#btprev-verti{
+	#btprev-verti {
 		display: none;
 	}
-	#btnext-verti{
+	#btnext-verti {
 		display: none;
 	}
 
 	/*Netflix*/
-  	.center-pic{
+	.center-pic {
 		margin-top: 5%;
 		margin-bottom: 5%;
-  	}
+	}
 }
 
-@media screen and (min-width: 501px) and (max-width: 767px) and (orientation: portrait)
-{
-	.swiper-wrapper{
+@media screen and (min-width: 501px) and (max-width: 767px) and (orientation: portrait) {
+	.swiper-wrapper {
 		height: auto;
 	}
-	.swiper-slide{
+	.swiper-slide {
 		width: 28%;
 	}
 
 	/*Tabs*/
-	.columns{
+	.columns {
 		margin: 20px;
 	}
 
@@ -58,39 +56,36 @@
 		color: white;
 		/*transform: rotateY(180deg);*/
 	}
-    #flex-col{
+	#flex-col {
 		margin-bottom: 1%;
 		overflow: hidden;
 	}
 
 	/*Services Swiper Buttons*/
-	#btprev-verti{
+	#btprev-verti {
 		display: none;
 	}
-	#btnext-verti{
+	#btnext-verti {
 		display: none;
 	}
 
 	/*Netflix*/
-  	.center-pic{
+	.center-pic {
 		margin-top: 5%;
 		margin-bottom: 5%;
-  	}
+	}
 }
 
-
-@media screen and (max-width: 767px) and (orientation: landscape)
-{
-	.swiper-slide{
+@media screen and (max-width: 767px) and (orientation: landscape) {
+	.swiper-slide {
 		width: 28%;
 	}
-	.swiper-wrapper{
+	.swiper-wrapper {
 		height: auto;
 	}
 
-
 	/*Tabs*/
-	.columns{
+	.columns {
 		margin: 20px;
 	}
 
@@ -100,20 +95,20 @@
 		color: white;
 		/*transform: rotateY(180deg);*/
 	}
-	
-    #flex-col{
+
+	#flex-col {
 		margin-bottom: 1%;
 	}
 
-
 	/*Services Swiper Buttons*/
-	#btprev-verti{
+	#btprev-verti {
 		display: none;
 	}
-	#btnext-verti{
+	#btnext-verti {
 		display: none;
+	}
+	.center-pic {
+		margin-top: 5%;
+		margin-bottom: 5%;
 	}
 }
-
-
-

@@ -23,33 +23,36 @@ import { SkyHomeComponent } from './components/home/components/sky-home/sky-home
 
 import { NavbarColorDirective } from './navbar-color.directive';
 import { IntersectionObserverDirective } from './intersectionObserver.directive';
+import { SwiperSlideComponent } from './components/swiper-slide/swiper-slide.component';
+
 @NgModule({
-    declarations: [
-        AppComponent,
-        BillboardComponent,
-        ContactComponent,
-        DisneyComponent,
-        FooterComponent,
-        HeaderComponent,
-        HomeComponent,
-        NetflixComponent,
-        PrimeComponent,
-        SkyComponent,
-        DisneyHomeComponent,
-        NetflixHomeComponent,
-        PrimeHomeComponent,
-        SkyHomeComponent,
-        NavbarColorDirective,
-        IntersectionObserverDirective,
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        FontAwesomeModule,
-    ],
-    providers: [],
-    bootstrap: [AppComponent],
+	declarations: [
+		AppComponent,
+		BillboardComponent,
+		ContactComponent,
+		DisneyComponent,
+		FooterComponent,
+		HeaderComponent,
+		HomeComponent,
+		NetflixComponent,
+		PrimeComponent,
+		SkyComponent,
+		DisneyHomeComponent,
+		NetflixHomeComponent,
+		PrimeHomeComponent,
+		SkyHomeComponent,
+		NavbarColorDirective,
+		IntersectionObserverDirective,
+		SwiperSlideComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		HttpClientModule,
+		FontAwesomeModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule {}

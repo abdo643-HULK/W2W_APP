@@ -1,4 +1,10 @@
-*{
-    background-color: #0f171e;
-    color: white;
+::ng-deep body {
+	background-color: #0f171e;
+}
+::ng-deep section {
+	background-color: #0f171e;
+}
+* {
+	background-color: #0f171e;
+	color: white;
 }

@@ -15,9 +15,8 @@ import {
 	HttpParams,
 	HttpResponse
 } from '@angular/common/http';
-import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { map, switchMap, debounceTime, distinct, filter } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 // import { Observable } from 'rxjs/internal/Observable';
 
 /*import { isPlatformBrowser } from '@angular/common';*/
@@ -27,6 +26,7 @@ interface NetflixData {
 	ITEMS: Item[];
 	proto: any;
 }
+
 interface Item {
 	netflixid: string;
 	title: string;
@@ -50,16 +50,14 @@ interface Item {
 export class NetflixHomeComponent implements OnInit {
 	days = '7';
 	country = 'DE';
-	dataValue;
-	expire;
-	results;
+	dataValue: Observable<Item[]>;
+	expire: Observable<Item[]>;
+	results: Observable<string[]>;
 	latestSearch = new Subject<string>();
 	private isDataAvailable: boolean = false;
 	@ViewChild('SwiperWrapperCS') cs: ElementRef;
 	@ViewChild('SwiperWrapperLS') ls: ElementRef;
 	@Output() tab = new EventEmitter();
-
-	faPlayCircle = faPlayCircle;
 
 	headers = new HttpHeaders()
 		.set('x-rapidapi-host', 'unogs-unogs-v1.p.rapidapi.com')
@@ -76,7 +74,7 @@ export class NetflixHomeComponent implements OnInit {
 		// this.getLeaving();
 	}
 
-	getSearch(term) {
+	getSearch(term: string) {
 		this.latestSearch.next(term);
 		this.results = this.latestSearch.pipe(
 			debounceTime(500),
@@ -96,9 +94,6 @@ export class NetflixHomeComponent implements OnInit {
 		this.dataValue = this.http
 			.get<NetflixData>(url, { headers: this.headers })
 			.pipe(map(csdata => csdata.ITEMS));
-		// .subscribe((csdata) => {
-		//   this.dataValue = csdata; /*console.log(this.dataValue);*/
-		// });
 	}
 	// getLeaving() : Observable<NetflixData[]>{
 	getLeaving() {
@@ -107,67 +102,25 @@ export class NetflixHomeComponent implements OnInit {
 		this.expire = this.http
 			.get<NetflixData>(url, { headers: this.headers })
 			.pipe(map(lsdata => lsdata.ITEMS || []));
-		// .subscribe((lsdata) => {
-		//   this.expire = lsdata; /*console.log(this.expire);*/
-		// });
 	}
 
 	ngOnInit() {}
 
-	openTab(evt, tabName, swipertab, servicetab) {
-		var i, x, tablinks;
+	openTab(evt, tabName: string, swipertab: string, servicetab: string) {
+		var i: number,
+			x,
+			tablinks: HTMLCollectionOf<Element> | { className: string }[];
 		x = document.getElementsByClassName(swipertab);
 		for (i = 0; i < x.length; i++) {
 			x[i].style.display = 'none';
 		}
 		tablinks = document.getElementsByClassName(servicetab);
 		for (i = 0; i < x.length; i++) {
-			tablinks[i].className = tablinks[i].className.replace(
-				' is-active',
-				''
-			);
+			tablinks[i].classList.remove('is-active');
 		}
 		document.getElementById(tabName).style.display = '';
 		evt.currentTarget.className += ' is-active';
 	}
 
-	/*openTab(tabName,swipertab) {
-		this.tab.emit({Name: tabName, Swiper:swipertab});
-	}*/
-
-	ngAfterViewInit() {
-		/*if (window.matchMedia("(min-width: 1024px) and (max-width: 2200px)").matches) {
-		let swiperslider = this.rd.createElement("div");
-		this.rd.addClass(swiperslider, 'swiper-slide');
-
-		let flipcard = this.rd.createElement('div');
-		this.rd.addClass(flipcard, 'flip-card-inner');
-
-		let cardfront = this.rd.createElement('div');
-		this.rd.addClass(cardfront, 'flip-card-front');
-
-		let image = this.rd.createElement('img');
-		this.rd.setProperty(image, 'src', './assets/prime/cs/Carnival_Row.jpg');
-
-		let cardback = this.rd.createElement('div');
-		this.rd.addClass(cardback, 'flip-card-back');
-
-		let title = this.rd.createElement('h1');
-		this.rd.setProperty(title, 'innerHTML', 'John Doe');
-
-		this.rd.appendChild(cardback, title);
-		this.rd.appendChild(flipcard, cardback);
-		this.rd.appendChild(cardfront, image);
-		this.rd.appendChild(flipcard, cardfront);
-		this.rd.appendChild(swiperslider, flipcard);
-		this.rd.appendChild(this.cs.nativeElement, swiperslider);
-		this.rd.appendChild(this.ls.nativeElement, swiperslider);
-
-		var sliderflipcard = Array.from(document.getElementsByClassName("swiper-slide") as HTMLCollectionOf<HTMLElement>);
-		sliderflipcard.forEach(function () {
-			this.rd.appendChild(this.cs.nativeElement, flipcard)
-			console.log(this.cs.nativeElement, flipcard);
-		});
-		}*/
-	}
+	ngAfterViewInit() {}
 }

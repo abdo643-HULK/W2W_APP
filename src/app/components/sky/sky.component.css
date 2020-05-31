@@ -1,13 +1,10 @@
-*{
-    background-color: #10599E;
-    color: white;
+::ng-deep body {
+	background-color: #10599e;
 }
-div{
-    background-color: #10599E;
+::ng-deep section {
+	background-color: #10599e;
 }
-body{
-    background-color: #10599E;
-}
-.swiper-container{
-    background-color: #10599E;
+* {
+	background-color: #10599e;
+	color: white;
 }
