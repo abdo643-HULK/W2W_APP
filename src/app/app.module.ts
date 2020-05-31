@@ -8,19 +8,24 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BillboardComponent } from './components/billboard/billboard.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { DisneyComponent } from './components/disney/disney.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/home/home.component';
-import { NetflixComponent } from './components/netflix/netflix.component';
-import { PrimeComponent } from './components/prime/prime.component';
-import { SkyComponent } from './components/sky/sky.component';
-import { DisneyHomeComponent } from './components/home/components/disney-home/disney-home.component';
-import { NetflixHomeComponent } from './components/home/components/netflix-home/netflix-home.component';
-import { PrimeHomeComponent } from './components/home/components/prime-home/prime-home.component';
-import { SkyHomeComponent } from './components/home/components/sky-home/sky-home.component';
 
+//Pages
+import { HomeComponent } from './pages/home/home.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { DisneyComponent } from './pages/disney/disney.component';
+import { NetflixComponent } from './pages/netflix/netflix.component';
+import { PrimeComponent } from './pages/prime/prime.component';
+import { SkyComponent } from './pages/sky/sky.component';
+
+//Home Component
+import { DisneyHomeComponent } from './pages/home/components/disney-home/disney-home.component';
+import { NetflixHomeComponent } from './pages/home/components/netflix-home/netflix-home.component';
+import { PrimeHomeComponent } from './pages/home/components/prime-home/prime-home.component';
+import { SkyHomeComponent } from './pages/home/components/sky-home/sky-home.component';
+
+//Directives
 import { NavbarColorDirective } from './navbar-color.directive';
 import { IntersectionObserverDirective } from './intersectionObserver.directive';
 import { SwiperSlideComponent } from './components/swiper-slide/swiper-slide.component';
