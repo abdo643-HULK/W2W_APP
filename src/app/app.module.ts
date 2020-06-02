@@ -1,25 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { BillboardComponent } from './components/billboard/billboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 
-//Pages
-import { HomeComponent } from './pages/home/home.component';
-import { ContactComponent } from './pages/contact/contact.component';
+//Homepage
+import { HomeComponent } from './home/home.component';
 
 //Home Component
-import { DisneyHomeComponent } from './pages/home/components/disney-home/disney-home.component';
-import { NetflixHomeComponent } from './pages/home/components/netflix-home/netflix-home.component';
-import { PrimeHomeComponent } from './pages/home/components/prime-home/prime-home.component';
-import { SkyHomeComponent } from './pages/home/components/sky-home/sky-home.component';
+import { DisneyHomeComponent } from './home/components/disney-home/disney-home.component';
+import { NetflixHomeComponent } from './home/components/netflix-home/netflix-home.component';
+import { PrimeHomeComponent } from './home/components/prime-home/prime-home.component';
+import { SkyHomeComponent } from './home/components/sky-home/sky-home.component';
 
 //Directives
 import { NavbarColorDirective } from './navbar-color.directive';
@@ -31,7 +30,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 	declarations: [
 		AppComponent,
 		BillboardComponent,
-		ContactComponent,
 		FooterComponent,
 		HeaderComponent,
 		HomeComponent,
@@ -46,7 +44,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
-		FormsModule,
 		HttpClientModule,
 		FontAwesomeModule,
 		BrowserAnimationsModule,

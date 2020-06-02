@@ -11,10 +11,6 @@ const routes: Routes = [
 		component: HomeComponent,
 	},
 	{
-		path: 'contact',
-		component: ContactComponent,
-	},
-	{
 		path: 'netflix',
 		loadChildren: () =>
 			import('./netflix/netflix.module').then((m) => m.NetflixModule),
@@ -36,7 +32,11 @@ const routes: Routes = [
 		loadChildren: () =>
 			import('./sky-x/sky-x.module').then((m) => m.SkyXModule),
 	},
-	{ path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
+	{
+		path: 'contact',
+		loadChildren: () =>
+			import('./contact/contact.module').then((m) => m.ContactModule),
+	},
 ];
 
 @NgModule({

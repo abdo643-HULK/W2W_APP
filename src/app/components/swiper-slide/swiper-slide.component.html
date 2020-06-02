@@ -1,4 +1,4 @@
-<ng-template>
+<div class="flip-card-front">
 	<img
 		class="border-picture"
 		title="{{ data.title }}"
@@ -6,29 +6,18 @@
 		src="{{ data.image }}"
 		loading="lazy"
 	/>
-</ng-template>
-<ng-template>
-	<div class="flip-card-front">
-		<img
-			class="border-picture"
-			title="{{ data.title }}"
-			alt="{{ data.title }}"
-			src="{{ data.image }}"
-			loading="lazy"
-		/>
-	</div>
-	<div class="flip-card-back">
-		<h1>Title: <br />{{ data.title }}</h1>
-		<p>
-			Watch:
-			<a href="https://www.netflix.com/title/{{ data.netflixid }}">
-				<p>
-					<fa-icon [icon]="faPlayCircle"></fa-icon>
-				</p>
-			</a>
-		</p>
-		<p>Type: {{ data.type }}</p>
-		<p>Rating: <br />{{ data.rating }}</p>
-		<p>Added: <br />{{ data.unogsdate }}</p>
-	</div>
-</ng-template>
+</div>
+<div class="flip-card-back">
+	<h1>Title: <br />{{ data.title }}</h1>
+	<p>
+		Watch:
+		<a href="https://www.netflix.com/title/{{ data.netflixid }}">
+			<p>
+				<fa-icon [icon]="faPlayCircle"></fa-icon>
+			</p>
+		</a>
+	</p>
+	<p>Type: {{ data.type }}</p>
+	<p>Rating: <br />{{ data.rating }}</p>
+	<p>Added: <br />{{ data.unogsdate }}</p>
+</div>
