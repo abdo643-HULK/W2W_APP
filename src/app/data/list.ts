@@ -230,3 +230,29 @@ export const LEAVING_CONTENT = [
 		imdbid: '5'
 	}
 ];
+export const REC_CONTENT = [
+	{
+		title: 'Carnival_Row',
+		image:
+			'./assets/recommend/4ee860ca-3b62-43fd-b47d-1f45d2649dd8._UR3000,600_SX3000_FMwebp_.jpg',
+		synopsis: 'Story of a lifetime'
+	},
+	{
+		title: 'Carnival_Row',
+		image:
+			'./assets/recommend/099fa944-e12f-4432-b0a8-0fca78ca9be8._UR3000,600_SX3000_FMwebp_.jpg'
+		// synopsis: 'Story of a lifetime'
+	},
+	{
+		title: 'Carnival_Row',
+		image:
+			'./assets/recommend/9704c6fc-5ec7-4aad-bfc6-df34922fbb73._UR3000,600_SX3000_FMwebp_.jpg'
+		// synopsis: 'Story of a lifetime'
+	},
+	{
+		title: 'Carnival_Row',
+		image:
+			'./assets/recommend/837a3cdd-ac71-4bb0-81b3-b1f70ac4ddaa._UR3000,600_SX3000_FMwebp_.jpg'
+		// synopsis: 'Story of a lifetime'
+	}
+];

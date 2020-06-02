@@ -1,42 +1,46 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { NetflixComponent } from './components/netflix/netflix.component';
-import { PrimeComponent } from './components/prime/prime.component';
-import { DisneyComponent } from './components/disney/disney.component';
-import { SkyComponent } from './components/sky/sky.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    pathMatch: 'full',
-    component: HomeComponent
-  },
-  {
-    path: 'contact',
-    component: ContactComponent
-  },
-  {
-    path: 'netflix',
-    component: NetflixComponent
-  },
-  {
-    path: 'prime',
-    component: PrimeComponent
-  },
-  {
-    path: 'disney+',
-    component: DisneyComponent
-  },
-  {
-    path: 'skyx',
-    component: SkyComponent
-  },
+	{
+		path: '',
+		redirectTo: '',
+		pathMatch: 'full',
+		component: HomeComponent,
+	},
+	{
+		path: 'contact',
+		component: ContactComponent,
+	},
+	{
+		path: 'netflix',
+		loadChildren: () =>
+			import('./netflix/netflix.module').then((m) => m.NetflixModule),
+	},
+	{
+		path: 'prime',
+		loadChildren: () =>
+			import('./prime/prime.module').then((m) => m.PrimeModule),
+	},
+	{
+		path: 'disney-plus',
+		loadChildren: () =>
+			import('./disney-plus/disney-plus.module').then(
+				(m) => m.DisneyPlusModule
+			),
+	},
+	{
+		path: 'sky-x',
+		loadChildren: () =>
+			import('./sky-x/sky-x.module').then((m) => m.SkyXModule),
+	},
+	{ path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

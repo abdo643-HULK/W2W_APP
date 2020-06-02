@@ -14,10 +14,6 @@ import { HeaderComponent } from './components/header/header.component';
 //Pages
 import { HomeComponent } from './pages/home/home.component';
 import { ContactComponent } from './pages/contact/contact.component';
-import { DisneyComponent } from './pages/disney/disney.component';
-import { NetflixComponent } from './pages/netflix/netflix.component';
-import { PrimeComponent } from './pages/prime/prime.component';
-import { SkyComponent } from './pages/sky/sky.component';
 
 //Home Component
 import { DisneyHomeComponent } from './pages/home/components/disney-home/disney-home.component';
@@ -29,35 +25,33 @@ import { SkyHomeComponent } from './pages/home/components/sky-home/sky-home.comp
 import { NavbarColorDirective } from './navbar-color.directive';
 import { IntersectionObserverDirective } from './intersectionObserver.directive';
 import { SwiperSlideComponent } from './components/swiper-slide/swiper-slide.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		BillboardComponent,
 		ContactComponent,
-		DisneyComponent,
 		FooterComponent,
 		HeaderComponent,
 		HomeComponent,
-		NetflixComponent,
-		PrimeComponent,
-		SkyComponent,
 		DisneyHomeComponent,
 		NetflixHomeComponent,
 		PrimeHomeComponent,
 		SkyHomeComponent,
 		NavbarColorDirective,
 		IntersectionObserverDirective,
-		SwiperSlideComponent
+		SwiperSlideComponent,
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
 		HttpClientModule,
-		FontAwesomeModule
+		FontAwesomeModule,
+		BrowserAnimationsModule,
 	],
 	providers: [],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
 })
 export class AppModule {}
