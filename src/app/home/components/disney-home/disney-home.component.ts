@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LEAVING_CONTENT, COMING_CONTENT } from '../../../../data/list';
+import { LEAVING_CONTENT, COMING_CONTENT } from '../../../data/list';
+
 @Component({
 	selector: 'app-disney-home',
 	templateUrl: './disney-home.component.html',
-	styleUrls: ['./disney-home.component.css']
+	styleUrls: ['./disney-home.component.css'],
 })
 export class DisneyHomeComponent implements OnInit {
 	data = COMING_CONTENT;

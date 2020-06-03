@@ -1,24 +1,22 @@
 <section>
 	<div class="billboard swiper-container">
 		<div class="swiper-wrapper">
-			<ng-container *ngFor="let data of rec">
-				<div class="swiper-slide">
-					<img
-						class="parallax-bg"
-						src="{{ data.image }}"
-						alt="{{ data.title }}"
-						title="{{ data.title }}"
-					/>
-					<div class="center-text">
-						<div class="title" data-swiper-parallax="-300">
-							<h1>{{ data.title }}</h1>
-						</div>
-						<div class="text" data-swiper-parallax="-100">
-							<p>{{ data.synopsis }}</p>
-						</div>
+			<div class="swiper-slide" *ngFor="let data of rec">
+				<img
+					class="parallax-bg"
+					src="{{ data.image }}"
+					alt="{{ data.title }}"
+					title="{{ data.title }}"
+				/>
+				<div class="center-text">
+					<div class="title" data-swiper-parallax="-300">
+						<h1>{{ data.title }}</h1>
+					</div>
+					<div class="text" data-swiper-parallax="-100">
+						<p>{{ data.synopsis }}</p>
 					</div>
 				</div>
-			</ng-container>
+			</div>
 			<!--Ende von Swiper-->
 			<!-- Add Pagination -->
 			<div class="swiper-pagination swiper-pagination-white"></div>

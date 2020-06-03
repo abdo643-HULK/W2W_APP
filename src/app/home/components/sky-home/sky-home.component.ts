@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LEAVING_CONTENT, COMING_CONTENT } from '../../../../data/list';
+import { LEAVING_CONTENT, COMING_CONTENT } from '../../../data/list';
 
 @Component({
 	selector: 'app-sky-home',
 	templateUrl: './sky-home.component.html',
-	styleUrls: ['./sky-home.component.css']
+	styleUrls: ['./sky-home.component.css'],
 })
 export class SkyHomeComponent implements OnInit {
 	data = COMING_CONTENT;

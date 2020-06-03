@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { BillboardComponent } from './components/billboard/billboard.component';
+// import { BillboardComponent } from './components/billboard/billboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 
@@ -23,13 +23,13 @@ import { SkyHomeComponent } from './home/components/sky-home/sky-home.component'
 //Directives
 import { NavbarColorDirective } from './navbar-color.directive';
 import { IntersectionObserverDirective } from './intersectionObserver.directive';
-import { SwiperSlideComponent } from './components/swiper-slide/swiper-slide.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared-module/shared-module.module';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		BillboardComponent,
+		// BillboardComponent,
 		FooterComponent,
 		HeaderComponent,
 		HomeComponent,
@@ -39,15 +39,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		SkyHomeComponent,
 		NavbarColorDirective,
 		IntersectionObserverDirective,
-		SwiperSlideComponent,
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		HttpClientModule,
-		FontAwesomeModule,
+		// FontAwesomeModule,
 		BrowserAnimationsModule,
+		SharedModule,
 	],
+	exports: [],
 	providers: [],
 	bootstrap: [AppComponent],
 })

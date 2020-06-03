@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { SkyXRoutingModule } from './sky-x-routing.module';
 import { SkyXComponent } from './sky-x.component';
-import { SkyComponent } from './../pages/sky/sky.component';
+import { SharedModule } from '../shared-module/shared-module.module';
 
 @NgModule({
-	declarations: [SkyXComponent, SkyComponent],
-	imports: [CommonModule, SkyXRoutingModule],
+	declarations: [SkyXComponent],
+	imports: [CommonModule, SkyXRoutingModule, SharedModule],
 })
 export class SkyXModule {}

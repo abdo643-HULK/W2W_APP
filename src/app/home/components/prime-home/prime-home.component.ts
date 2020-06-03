@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LEAVING_CONTENT, COMING_CONTENT } from '../../../../data/list';
+import { LEAVING_CONTENT, COMING_CONTENT } from '../../../data/list';
+
 @Component({
 	selector: 'app-prime-home',
 	templateUrl: './prime-home.component.html',
-	styleUrls: ['./prime-home.component.css']
+	styleUrls: ['./prime-home.component.css'],
 })
 export class PrimeHomeComponent implements OnInit {
 	data = COMING_CONTENT;
