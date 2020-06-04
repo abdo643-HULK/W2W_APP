@@ -48,9 +48,10 @@
 					<div class="home swiper-container">
 						<div #SwiperWrapperCS class="home swiper-wrapper">
 							<div class="swiper-slide" *ngFor="let cs of data">
-								<app-swiper-slide
+								<app-flip-card
 									[data]="cs"
-								></app-swiper-slide>
+									[colors]="cardStyle"
+								></app-flip-card>
 							</div>
 						</div>
 						<!-- Add Pagination -->
@@ -73,9 +74,10 @@
 					<div class="home swiper-container">
 						<div #SwiperWrapperCS class="home swiper-wrapper">
 							<div class="swiper-slide" *ngFor="let ls of expire">
-								<app-swiper-slide
+								<app-flip-card
 									[data]="ls"
-								></app-swiper-slide>
+									[colors]="cardStyle"
+								></app-flip-card>
 							</div>
 						</div>
 						<!-- Add Pagination -->

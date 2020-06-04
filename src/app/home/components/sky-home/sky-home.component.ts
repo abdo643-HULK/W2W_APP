@@ -7,9 +7,10 @@ import { LEAVING_CONTENT, COMING_CONTENT } from '../../../data/list';
 	styleUrls: ['./sky-home.component.css'],
 })
 export class SkyHomeComponent implements OnInit {
+	serviceLogo = './assets/skyq-nav.svg';
 	data = COMING_CONTENT;
 	expire = LEAVING_CONTENT;
-
+	cardStyle = 'white';
 	constructor() {}
 
 	ngOnInit() {}

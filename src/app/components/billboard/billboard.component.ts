@@ -1,4 +1,10 @@
-import { Component, OnInit, AfterViewInit, OnChanges } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	AfterViewInit,
+	OnChanges,
+	Input,
+} from '@angular/core';
 import Swiper from 'swiper';
 import { REC_CONTENT } from '../../data/list';
 
@@ -11,11 +17,12 @@ interface DATA {
 @Component({
 	selector: 'app-billboard',
 	templateUrl: './billboard.component.html',
-	styleUrls: ['./billboard.component.css']
+	styleUrls: ['./billboard.component.css'],
 })
 export class BillboardComponent implements OnInit, AfterViewInit {
-	rec = REC_CONTENT;
-	startSwiper: Swiper;
+	rec: DATA[] = REC_CONTENT;
+	startSwiper: Swiper[] | Swiper;
+	@Input() bgColor: string;
 
 	constructor() {}
 
@@ -28,12 +35,12 @@ export class BillboardComponent implements OnInit, AfterViewInit {
 			loop: true,
 			pagination: {
 				el: '.swiper-pagination',
-				clickable: true
+				clickable: true,
 			},
 			autoplay: {
 				delay: 5000,
-				disableOnInteraction: false
-			}
+				disableOnInteraction: false,
+			},
 		});
 	}
 
@@ -47,16 +54,12 @@ export class BillboardComponent implements OnInit, AfterViewInit {
 			loop: true,
 			pagination: {
 				el: '.swiper-pagination',
-				clickable: true
+				clickable: true,
 			},
 			navigation: {
 				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev'
+				prevEl: '.swiper-button-prev',
 			},
-			autoplay: {
-				delay: 5000,
-				disableOnInteraction: false
-			}
 		});
 	}
 
@@ -70,16 +73,16 @@ export class BillboardComponent implements OnInit, AfterViewInit {
 			loop: true,
 			pagination: {
 				el: '.swiper-pagination',
-				clickable: true
+				clickable: true,
 			},
 			navigation: {
 				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev'
+				prevEl: '.swiper-button-prev',
 			},
 			autoplay: {
 				delay: 5000,
-				disableOnInteraction: false
-			}
+				disableOnInteraction: false,
+			},
 		});
 	}
 
@@ -110,11 +113,14 @@ export class BillboardComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	ngOnInit() {}
-	ngAfterViewInit() {
+	ngOnInit(): void {}
+	ngAfterViewInit(): void {
 		this.swiperInit();
 		console.log(this.startSwiper);
+		// let buttonStream$ = Observable.fromEvent(, 'click')
+		// .subscribe(res => console.log(res));
 	}
+
 	// ngOnChanges() {
 	// 	this.startSwiper.destroy(true, true);
 	// 	this.swiperInit();

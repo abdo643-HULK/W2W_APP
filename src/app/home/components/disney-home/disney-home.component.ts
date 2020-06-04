@@ -9,6 +9,7 @@ import { LEAVING_CONTENT, COMING_CONTENT } from '../../../data/list';
 export class DisneyHomeComponent implements OnInit {
 	data = COMING_CONTENT;
 	expire = LEAVING_CONTENT;
+	cardStyle = 'white';
 	constructor() {}
 	ngOnInit() {}
 	openTab(evt, tabName, swipertab, servicetab) {

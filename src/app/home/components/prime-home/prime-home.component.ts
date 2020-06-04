@@ -7,8 +7,11 @@ import { LEAVING_CONTENT, COMING_CONTENT } from '../../../data/list';
 	styleUrls: ['./prime-home.component.css'],
 })
 export class PrimeHomeComponent implements OnInit {
+	serviceLogo = './assets/Prime_Video1.png';
 	data = COMING_CONTENT;
 	expire = LEAVING_CONTENT;
+	cardStyle = 'white';
+
 	constructor() {}
 	ngOnInit() {}
 	openTab(evt, tabName, swipertab, servicetab) {

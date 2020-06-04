@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { Location } from '@angular/common';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Location, DOCUMENT } from '@angular/common';
 
 @Component({
 	selector: 'app-sky-x',
@@ -8,9 +8,15 @@ import { Location } from '@angular/common';
 	styleUrls: ['./sky-x.component.css'],
 })
 export class SkyXComponent implements OnInit {
-	constructor(private meta: Meta, private location: Location) {}
+	bgColor = '#10599e';
+	constructor(
+		private meta: Meta,
+		private location: Location,
+		@Inject(DOCUMENT) private _document
+	) {}
 
 	ngOnInit(): void {
+		this._document.body.style.background = this.bgColor;
 		this.meta.updateTag({ name: 'title', content: '' });
 		this.meta.updateTag({
 			name: 'description',

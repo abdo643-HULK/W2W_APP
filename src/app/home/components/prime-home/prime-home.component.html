@@ -5,7 +5,7 @@
 		<!-- <ng-template> -->
 		<div class="column full-half-third is-hidden-desktop-monitor">
 			<div class="center-pic">
-				<img id="prime-logo" src="./assets/Prime_Video1.png" />
+				<img id="prime-logo" src="{{ serviceLogo }}" />
 			</div>
 		</div>
 		<!-- </ng-template> -->
@@ -43,9 +43,10 @@
 					<div class="home swiper-container">
 						<div #SwiperWrapperCS class="home swiper-wrapper">
 							<div class="swiper-slide" *ngFor="let cs of data">
-								<app-swiper-slide
+								<app-flip-card
 									[data]="cs"
-								></app-swiper-slide>
+									[colors]="cardStyle"
+								></app-flip-card>
 							</div>
 						</div>
 						<!-- Add Pagination -->
@@ -68,9 +69,10 @@
 					<div class="home swiper-container">
 						<div #SwiperWrapperLS class="home swiper-wrapper">
 							<div class="swiper-slide" *ngFor="let ls of expire">
-								<app-swiper-slide
+								<app-flip-card
 									[data]="ls"
-								></app-swiper-slide>
+									[colors]="cardStyle"
+								></app-flip-card>
 							</div>
 							<!-- Add Pagination -->
 							<div
@@ -100,7 +102,7 @@
 			class="column full-half-third is-hidden-touch-fernseher is-hidden-touch-landscape"
 		>
 			<div class="center-pic">
-				<img id="prime-logo" src="./assets/Prime_Video1.png" />
+				<img id="prime-logo" src="{{ serviceLogo }}" />
 			</div>
 		</div>
 		<!--Ende von Desktop Prime Logo Column-->

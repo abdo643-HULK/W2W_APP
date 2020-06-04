@@ -7,13 +7,13 @@ import {
 	Output,
 	AfterViewInit,
 	Renderer2,
-	ViewChild
+	ViewChild,
 } from '@angular/core';
 import {
 	HttpClient,
 	HttpHeaders,
 	HttpParams,
-	HttpResponse
+	HttpResponse,
 } from '@angular/common/http';
 import { map, switchMap, debounceTime, distinct, filter } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
@@ -45,7 +45,7 @@ interface Item {
 @Component({
 	selector: 'app-netflix-home',
 	templateUrl: './netflix-home.component.html',
-	styleUrls: ['./netflix-home.component.css']
+	styleUrls: ['./netflix-home.component.css'],
 })
 export class NetflixHomeComponent implements OnInit {
 	days = '7';
@@ -54,6 +54,8 @@ export class NetflixHomeComponent implements OnInit {
 	expire: Observable<Item[]>;
 	results: Observable<string[]>;
 	latestSearch = new Subject<string>();
+	cardStyle = 'white';
+
 	private isDataAvailable: boolean = false;
 	@ViewChild('SwiperWrapperCS') cs: ElementRef;
 	@ViewChild('SwiperWrapperLS') ls: ElementRef;
@@ -79,21 +81,24 @@ export class NetflixHomeComponent implements OnInit {
 		this.results = this.latestSearch.pipe(
 			debounceTime(500),
 			distinct(),
-			filter(term => !!term),
-			switchMap(term =>
+			filter((term) => !!term),
+			switchMap((term) =>
 				this.http
 					.get<NetflixData>(`${term}`)
-					.pipe(map(csdata => csdata.ITEMS.map(item => item.title)))
+					.pipe(
+						map((csdata) => csdata.ITEMS.map((item) => item.title))
+					)
 			)
 		);
 	}
 
 	getNew() {
-		const url = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Anew${this
-			.days || 7}%3A${this.country || 'DE'}&p=1&t=ns&st=adv`;
+		const url = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Anew${
+			this.days || 7
+		}%3A${this.country || 'DE'}&p=1&t=ns&st=adv`;
 		this.dataValue = this.http
 			.get<NetflixData>(url, { headers: this.headers })
-			.pipe(map(csdata => csdata.ITEMS));
+			.pipe(map((csdata) => csdata.ITEMS));
 	}
 	// getLeaving() : Observable<NetflixData[]>{
 	getLeaving() {
@@ -101,7 +106,7 @@ export class NetflixHomeComponent implements OnInit {
 			'https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Aexp%3ADE&t=ns&st=adv&p=1';
 		this.expire = this.http
 			.get<NetflixData>(url, { headers: this.headers })
-			.pipe(map(lsdata => lsdata.ITEMS || []));
+			.pipe(map((lsdata) => lsdata.ITEMS || []));
 	}
 
 	ngOnInit() {}

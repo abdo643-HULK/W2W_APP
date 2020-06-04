@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import {
 	NavigationEnd,
 	NavigationStart,
@@ -7,7 +7,7 @@ import {
 } from '@angular/router';
 
 @Component({
-	selector: 'app-root',
+	selector: 'body',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.css'],
 })

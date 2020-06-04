@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'app-disney-plus',
-  templateUrl: './disney-plus.component.html',
-  styleUrls: ['./disney-plus.component.css']
+	selector: 'app-disney-plus',
+	templateUrl: './disney-plus.component.html',
+	styleUrls: ['./disney-plus.component.css'],
 })
 export class DisneyPlusComponent implements OnInit {
+	bgColor = '#212433';
 
-  constructor() { }
+	constructor(@Inject(DOCUMENT) private _document) {}
 
-  ngOnInit(): void {
-  }
-
+	ngOnInit(): void {
+		this._document.body.style.background = this.bgColor;
+	}
 }

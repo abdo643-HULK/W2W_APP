@@ -1,8 +1,12 @@
-::ng-deep body {
+/* ::ng-deep body {
 	background-color: #10599e;
 }
 ::ng-deep section {
 	background-color: #10599e;
+} */
+:host {
+	background-color: #10599e;
+	color: white;
 }
 * {
 	background-color: #10599e;

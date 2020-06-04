@@ -1,16 +1,16 @@
 import {
 	Component,
 	OnInit,
-	AfterViewInit /*HostListener, ElementRef , ViewChild, Renderer2*/
+	AfterViewInit /*HostListener, ElementRef , ViewChild, Renderer2*/,
 } from '@angular/core';
-import Swiper from 'swiper';
-// import { Navigation, Pagination, Scrollbar,Autoplay,Parallax,EffectFade } from 'swiper/js/swiper.esm.js';
+// import Swiper from 'swiper';
+import { Swiper, Navigation, Pagination } from 'swiper/js/swiper.esm.js';
 // import { fromEvent, Observable, Subscription } from "rxjs";
 
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.css']
+	styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, AfterViewInit {
 	mySwiper;
@@ -24,12 +24,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
 			spaceBetween: 10,
 			freeMode: true,
 			observer: true,
-			observeParents: true
+			observeParents: true,
+			grabCursor: true,
+			mousewheel: true,
 		});
 	}
 
 	desktopMonitorSwiper() {
+		Swiper.use([Navigation, Pagination]);
 		return new Swiper('.home.swiper-container', {
+			// lazy:true, //enables lazyloading add to html
+			// <img data-src="https://swiperjs.com/demos/images/nature-1.jpg" class="swiper-lazy">
+			// <!-- Preloader image -->
+			// <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 			direction: 'vertical',
 			slidesPerView: 1,
 			slidesPerColumn: 3,
@@ -40,20 +47,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
 			pagination: {
 				el: '.swiper-pagination',
 				clickable: true,
-				dynamicBullets: true
+				dynamicBullets: true,
 			},
 			navigation: {
 				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev'
-			}
+				prevEl: '.swiper-button-prev',
+			},
 		});
 	}
 
 	tvSwiper() {
+		Swiper.use([Navigation, Pagination]);
 		return new Swiper('.home.swiper-container', {
 			direction: 'horizontal',
-			slidesPerView: 5,
-			slidesPerGroup: 5,
+			slidesPerView: 6,
+			slidesPerGroup: 6,
 			simulateTouch: false,
 			spaceBetween: 10,
 			loop: true,
@@ -62,12 +70,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
 			observeParents: true,
 			pagination: {
 				el: '.swiper-pagination',
-				clickable: true
+				clickable: true,
 			},
 			navigation: {
 				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev'
-			}
+				prevEl: '.swiper-button-prev',
+			},
 		});
 	}
 
@@ -124,7 +132,5 @@ export class HomeComponent implements OnInit, AfterViewInit {
 		);
 		swipercontainer.style.background = 'black';
 	}
-	// ngOnDestroy() {
-	// 	this.resizeSubscription$.unsubscribe()
-	// }
+	ngOnDestroy() {}
 }

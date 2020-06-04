@@ -1,24 +1,30 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
 html {
 	background-color: black;
 	touch-action: none;
 }
-body {
-	margin: 0;
-	width: 100%;
-}
 img {
+	margin: 0;
+	padding: 0;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-o-user-select: none;
 	user-select: none;
 }
-
-/*Swiper*/
-.swiper-container {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
+p {
+	margin: 0;
+	padding: 0;
 }
 .tabs ul {
 	/* justify-content: center; */
@@ -99,271 +105,12 @@ img {
 @media screen and (min-width: 2201px) {
 	.full-half-third {
 		flex: 0 0 33%;
+		width: 33%;
 	}
 	.full-half-2third {
+		width: 67%;
 		flex: 0 0 67%;
 	}
-}
-
-/*Tablet and Phones*/
-@media screen and (max-width: 1024px) {
-	/* This container is needed to position the front and back side */
-	.flip-card {
-		position: relative;
-		text-align: center;
-	}
-
-	/* Do an horizontal flip when you move the mouse over the flip box container */
-	.swiper-slide:hover .flip-card-back {
-		transition: width 1s ease-out, height 1s ease-out;
-		width: 100%;
-		height: 100%;
-		overflow: visible;
-		visibility: visible;
-		-moz-animation: cssAnimation 1s ease-in 5s forwards;
-		/* Firefox */
-		-webkit-animation: cssAnimation 1s ease-in 5s forwards;
-		/* Safari and Chrome */
-		-o-animation: cssAnimation 1s ease-in 5s forwards;
-		/* Opera */
-		animation: cssAnimation 1s ease-in 5s forwards;
-		-webkit-animation-fill-mode: forwards;
-		animation-fill-mode: forwards;
-	}
-	/* Position the front and back side */
-	.flip-card-front {
-		position: relative;
-		-webkit-backface-visibility: hidden; /* Safari */
-		backface-visibility: hidden;
-	}
-	.flip-card-back {
-		width: 0;
-		height: 0;
-		overflow: hidden;
-		visibility: hidden;
-	}
-	@keyframes cssAnimation {
-		to {
-			width: 0;
-			height: 0;
-			overflow: hidden;
-		}
-	}
-	@-webkit-keyframes cssAnimation {
-		to {
-			width: 0;
-			height: 0;
-			visibility: hidden;
-		}
-	}
-	/* Style the back side */
-	.flip-card-back {
-		border-radius: 5%;
-		font-size: x-large;
-	}
-
-	/* Style the front side (fallback if image is missing) */
-	.flip-card-front img {
-		height: 100%;
-		width: 100%;
-	}
-}
-
-/*Big Tablets*/
-@media screen and (min-width: 1024px) and (max-width: 1439px) and (orientation: portrait) {
-	/* This container is needed to position the front and back side */
-	.flip-card {
-		height: 20vw;
-		position: relative;
-		text-align: center;
-	}
-
-	/* Do an horizontal flip when you move the mouse over the flip box container */
-	.swiper-slide:hover .flip-card-back {
-		transition: width 1s ease-out, height 1s ease-out;
-		width: 100%;
-		height: 100%;
-		overflow: visible;
-		visibility: visible;
-		-moz-animation: cssAnimation 1s ease-in 5s forwards;
-		/* Firefox */
-		-webkit-animation: cssAnimation 1s ease-in 5s forwards;
-		/* Safari and Chrome */
-		-o-animation: cssAnimation 1s ease-in 5s forwards;
-		/* Opera */
-		animation: cssAnimation 1s ease-in 5s forwards;
-		-webkit-animation-fill-mode: forwards;
-		animation-fill-mode: forwards;
-	}
-	/* Position the front and back side */
-	.flip-card-front {
-		position: relative;
-		-webkit-backface-visibility: hidden; /* Safari */
-		backface-visibility: hidden;
-	}
-	.flip-card-back {
-		width: 0;
-		height: 0;
-		overflow: hidden;
-		visibility: hidden;
-	}
-	@keyframes cssAnimation {
-		to {
-			width: 0;
-			height: 0;
-			overflow: hidden;
-		}
-	}
-	@-webkit-keyframes cssAnimation {
-		to {
-			width: 0;
-			height: 0;
-			visibility: hidden;
-		}
-	}
-	/* Style the back side */
-	.flip-card-back {
-		border-radius: 5%;
-		font-size: x-large;
-	}
-
-	/* Style the front side (fallback if image is missing) */
-	.flip-card-front img {
-		height: 100%;
-		width: 100%;
-	}
-}
-
-/*Desktop und Monitor*/
-@media screen and (min-width: 1024px) and (max-width: 2200px) and (orientation: landscape) {
-	.home.swiper-container {
-		flex-wrap: wrap;
-		flex-direction: row;
-		height: 100%;
-	}
-	.home.swiper-wrapper {
-		flex-wrap: wrap;
-		flex-direction: row;
-		height: 100%;
-	}
-	/*
-    Flip image to show details:
-  */
-
-	/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
-	.swiper-slide {
-		perspective: 1000px; /* Remove this if you don't want the 3D effect */
-	}
-
-	/* This container is needed to position the front and back side */
-	.flip-card {
-		position: relative;
-		width: 100%;
-		height: 20vw;
-		text-align: center;
-		transition: transform 0.5s;
-		transform-style: preserve-3d;
-	}
-
-	/* Do an horizontal flip when you move the mouse over the flip box container */
-	.swiper-slide:hover .flip-card {
-		transform: rotateY(180deg);
-	}
-	/* Position the front and back side */
-	.flip-card-front,
-	.flip-card-back {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		-webkit-backface-visibility: hidden; /* Safari */
-		backface-visibility: hidden;
-	}
-
-	/* Style the front side (fallback if image is missing) */
-	.flip-card-front img {
-		height: 100%;
-		width: 100%;
-	}
-
-	/* Style the back side */
-	.flip-card-back {
-		transform: rotateY(180deg);
-		border-radius: 5%;
-	}
-	.swiper-slide::-webkit-scrollbar {
-		width: 0 !important;
-	}
-
-	.swiper-slide {
-		overflow: -moz-scrollbars-none;
-	}
-}
-
-/*TV*/
-@media screen and (min-width: 2201px) {
-	.home.swiper-wrapper {
-		height: 100%;
-	}
-	/*
-    Flip image to show details:
-  */
-
-	/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
-	.swiper-slide {
-		perspective: 1000px; /* Remove this if you don't want the 3D effect */
-		height: 371.109px;
-	}
-
-	/* This container is needed to position the front and back side */
-	.flip-card {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		text-align: center;
-		transition: transform 0.5s;
-		transform-style: preserve-3d;
-	}
-
-	/* Do an horizontal flip when you move the mouse over the flip box container */
-	.swiper-slide:hover .flip-card {
-		transform: rotateY(180deg);
-	}
-	/* Position the front and back side */
-	.flip-card-front,
-	.flip-card-back {
-		position: absolute;
-		-webkit-backface-visibility: hidden; /* Safari */
-		backface-visibility: hidden;
-		width: 100%;
-		height: 100%;
-	}
-
-	/* Style the front side (fallback if image is missing) */
-	.flip-card-front img {
-		height: 20vw;
-		width: 100%;
-	}
-
-	/* Style the back side */
-	.flip-card-back {
-		color: white;
-		transform: rotateY(180deg);
-		border-radius: 5%;
-		font-size: x-large;
-	}
-	.swiper-slide::-webkit-scrollbar {
-		width: 0 !important;
-	}
-
-	.swiper-slide {
-		overflow: -moz-scrollbars-none;
-	}
-}
-
-/*Damit beim drücken der Buttons keine Umrandung angezeigt wird*/
-.swiper-button-prev:focus,
-.swiper-button-next:focus {
-	outline-color: transparent;
 }
 
 /*Handy-Fernseher*/
@@ -460,5 +207,11 @@ img {
 	}
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

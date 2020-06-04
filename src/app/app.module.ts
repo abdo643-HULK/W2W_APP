@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// import {TransferHttpCacheModule} from '@nguniversal/common';
 
 import { HttpClientModule } from '@angular/common/http';
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -25,6 +26,8 @@ import { NavbarColorDirective } from './navbar-color.directive';
 import { IntersectionObserverDirective } from './intersectionObserver.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared-module/shared-module.module';
+import { NavLogoComponent } from './components/header/components/nav-logo/nav-logo.component';
+import { SearchbarComponent } from './components/header/components/searchbar/searchbar.component';
 
 @NgModule({
 	declarations: [
@@ -39,6 +42,8 @@ import { SharedModule } from './shared-module/shared-module.module';
 		SkyHomeComponent,
 		NavbarColorDirective,
 		IntersectionObserverDirective,
+		NavLogoComponent,
+		SearchbarComponent,
 	],
 	imports: [
 		BrowserModule,

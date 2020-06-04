@@ -263,8 +263,13 @@
 /* TV */
 @media screen and (min-width: 2201px) and (orientation: landscape) {
 	.swiper-slide {
-		width: auto;
+		height: 15vw;
 	}
+
+	.container {
+		max-width: none;
+	}
+
 	.columns {
 		margin: 20px;
 		margin-bottom: 0 !important;

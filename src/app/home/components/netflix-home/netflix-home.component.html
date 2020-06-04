@@ -1,6 +1,6 @@
 <!--Beginn von Netflix-->
 <div class="tile is-child">
-	<div class="columns box" style="background-color:  #141414;">
+	<div class="columns box" style="background-color: #141414;">
 		<!--Beginn von Netflix Logo-->
 		<div class="column full-half-third">
 			<div class="center-pic">
@@ -48,9 +48,10 @@
 					<div class="home swiper-container">
 						<div #SwiperWrapperCS class="home swiper-wrapper">
 							<ng-container *ngFor="let cs of dataValue | async">
-								<app-swiper-slide
+								<app-flip-card
 									[data]="cs"
-								></app-swiper-slide>
+									[colors]="cardStyle"
+								></app-flip-card>
 							</ng-container>
 						</div>
 						<!-- Add Pagination -->
@@ -73,9 +74,10 @@
 					<div class="home swiper-container">
 						<div #SwiperWrapperCS class="home swiper-wrapper">
 							<ng-container *ngFor="let ls of expire | async">
-								<app-swiper-slide
+								<app-flip-card
 									[data]="ls"
-								></app-swiper-slide>
+									[colors]="cardStyle"
+								></app-flip-card>
 							</ng-container>
 						</div>
 						<!-- Add Pagination -->

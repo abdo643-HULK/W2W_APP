@@ -4,7 +4,7 @@
 		<!--Beginn von Mobile Logo-->
 		<div class="column full-half-third is-hidden-desktop-monitor">
 			<div class="center-pic">
-				<img id="sky-logo" src="./assets/skyq-nav.svg" />
+				<img id="sky-logo" src="{{ serviceLogo }}" />
 			</div>
 		</div>
 		<!--Ende von Mobile Logo Column-->
@@ -33,9 +33,10 @@
 					<div class="home swiper-container">
 						<div #SwiperWrapperCS class="home swiper-wrapper">
 							<div class="swiper-slide" *ngFor="let cs of data">
-								<app-swiper-slide
+								<app-flip-card
 									[data]="cs"
-								></app-swiper-slide>
+									[colors]="cardStyle"
+								></app-flip-card>
 							</div>
 						</div>
 						<!-- Add Pagination -->
@@ -54,9 +55,10 @@
 					<div class="home swiper-container">
 						<div #SwiperWrapperCS class="home swiper-wrapper">
 							<div class="swiper-slide" *ngFor="let ls of expire">
-								<app-swiper-slide
+								<app-flip-card
 									[data]="ls"
-								></app-swiper-slide>
+									[colors]="cardStyle"
+								></app-flip-card>
 							</div>
 						</div>
 						<!-- Add Pagination -->
@@ -79,7 +81,7 @@
 			class="column full-half-third is-hidden-touch-fernseher is-hidden-touch-landscape"
 		>
 			<div class="center-pic">
-				<img id="sky-logo" src="./assets\skyq-nav.svg" />
+				<img id="sky-logo" src="{{ serviceLogo }}" />
 			</div>
 		</div>
 		<!--Ende von Desktop Sky Logo-->

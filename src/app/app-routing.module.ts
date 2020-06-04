@@ -20,14 +20,14 @@ const routes: Routes = [
 			import('./prime/prime.module').then((m) => m.PrimeModule),
 	},
 	{
-		path: 'disney-plus',
+		path: 'disney+',
 		loadChildren: () =>
 			import('./disney-plus/disney-plus.module').then(
 				(m) => m.DisneyPlusModule
 			),
 	},
 	{
-		path: 'sky-x',
+		path: 'skyx',
 		loadChildren: () =>
 			import('./sky-x/sky-x.module').then((m) => m.SkyXModule),
 	},

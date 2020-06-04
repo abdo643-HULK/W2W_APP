@@ -18,9 +18,10 @@
 }
 
 .swiper-container,
-.swiper-wrapper {
+.swiper-wrapper,
+.swiper-slide img {
 	background-color: transparent;
-	height: 20vw;
+	height: 19.8vw;
 }
 
 .parallax-bg {
@@ -123,7 +124,7 @@
 		margin-top: unset;
 	}
 	.center-text {
-		padding: 5% 7% 2.9% 7%;
+		padding: 5% 7% 3% 7%;
 	}
 }
 

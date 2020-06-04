@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SwiperSlideComponent } from './swiper-slide.component';
+import { SwiperComponent } from './swiper.component';
 
-describe('SwiperSlideComponent', () => {
-  let component: SwiperSlideComponent;
-  let fixture: ComponentFixture<SwiperSlideComponent>;
+describe('SwiperComponent', () => {
+  let component: SwiperComponent;
+  let fixture: ComponentFixture<SwiperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SwiperSlideComponent ]
+      declarations: [ SwiperComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SwiperSlideComponent);
+    fixture = TestBed.createComponent(SwiperComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

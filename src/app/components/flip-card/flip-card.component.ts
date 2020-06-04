@@ -17,14 +17,15 @@ interface Item {
 }
 
 @Component({
-	selector: 'app-swiper-slide',
-	templateUrl: './swiper-slide.component.html',
-	styleUrls: ['./swiper-slide.component.css']
+	selector: 'app-flip-card',
+	templateUrl: './flip-card.component.html',
+	styleUrls: ['./flip-card.component.css'],
 })
-export class SwiperSlideComponent implements OnInit {
+export class FlipCardComponent implements OnInit {
 	faPlayCircle = faPlayCircle;
 
 	@Input() data: Item;
+	@Input() colors: string;
 
 	constructor() {}
 
