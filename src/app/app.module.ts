@@ -3,12 +3,10 @@ import { NgModule } from '@angular/core';
 // import {TransferHttpCacheModule} from '@nguniversal/common';
 
 import { HttpClientModule } from '@angular/common/http';
-// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-// import { BillboardComponent } from './components/billboard/billboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 
@@ -22,19 +20,14 @@ import { PrimeHomeComponent } from './home/components/prime-home/prime-home.comp
 import { SkyHomeComponent } from './home/components/sky-home/sky-home.component';
 
 //Directives
-import { NavbarColorDirective } from './navbar-color.directive';
-import { IntersectionObserverDirective } from './intersectionObserver.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared-module/shared-module.module';
 import { NavLogoComponent } from './components/header/components/nav-logo/nav-logo.component';
 import { SearchbarComponent } from './components/header/components/searchbar/searchbar.component';
-import { MaterialModule } from './material/material.module';
-import { SwiperInitDirective } from './directives/swiper-init.directive';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		// BillboardComponent,
 		FooterComponent,
 		HeaderComponent,
 		HomeComponent,
@@ -42,21 +35,10 @@ import { SwiperInitDirective } from './directives/swiper-init.directive';
 		NetflixHomeComponent,
 		PrimeHomeComponent,
 		SkyHomeComponent,
-		NavbarColorDirective,
-		IntersectionObserverDirective,
 		NavLogoComponent,
 		SearchbarComponent,
-		SwiperInitDirective,
 	],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		HttpClientModule,
-		// FontAwesomeModule,
-		BrowserAnimationsModule,
-		SharedModule,
-		MaterialModule,
-	],
+	imports: [BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, SharedModule],
 	exports: [],
 	providers: [],
 	bootstrap: [AppComponent],
