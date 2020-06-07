@@ -1,91 +1,48 @@
-<!--Beginn von Sky-->
 <div class="tile is-child">
 	<div class="columns box" style="background-color: #10599e;">
 		<!--Beginn von Mobile Logo-->
-		<div class="column full-half-third is-hidden-desktop-monitor">
-			<div class="center-pic">
-				<img id="sky-logo" src="{{ serviceLogo }}" />
-			</div>
-		</div>
+		<ng-container *ngTemplateOutlet="mobile ? Logo : ''"></ng-container>
 		<!--Ende von Mobile Logo Column-->
 		<div class="column full-half-2third">
-			<div id="flex-col" class="tabs is-centered is-boxed">
-				<ul>
-					<li
-						class="skytab is-active"
-						(click)="openTab($event, 'sky-cs', 'sky-tab', 'skytab')"
-					>
-						<a>Coming Soon</a>
-					</li>
-					<li
-						class="skytab"
-						(click)="
-							openTab($event, 'sky-leaving', 'sky-tab', 'skytab')
-						"
-					>
-						<a>Leaving Soon</a>
-					</li>
-				</ul>
-			</div>
-			<div class="container">
-				<!--Beginn von Coming Sky-->
-				<div id="sky-cs" class="sky-tab">
-					<div class="home swiper-container">
-						<div #SwiperWrapperCS class="home swiper-wrapper">
+			<mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+				<mat-tab label="Recently Released">
+					<div class="home swiper-container" SwiperInit>
+						<div class="home swiper-wrapper">
 							<div class="swiper-slide" *ngFor="let cs of data">
-								<app-flip-card
-									[data]="cs"
-									[colors]="cardStyle"
-								></app-flip-card>
+								<app-flip-card [data]="cs" [colors]="cardStyle"></app-flip-card>
 							</div>
 						</div>
-						<!-- Add Pagination -->
-						<div
-							class="swiper-pagination down-slide swiper-pagination-white"
-						></div>
-						<!-- Add Arrows -->
-						<div id="btnext-verti" class="swiper-button-next"></div>
-						<div id="btprev-verti" class="swiper-button-prev"></div>
+						<ng-container *ngTemplateOutlet="mobile ? '' : swiperExtra"></ng-container>
 					</div>
-					<!-- Initialize Swiper -->
-				</div>
-				<!--Ende von Coming Sky-->
-				<!--Beginn von Leaving Sky-->
-				<div id="sky-leaving" class="sky-tab" style="display: none;">
-					<div class="home swiper-container">
-						<div #SwiperWrapperCS class="home swiper-wrapper">
+				</mat-tab>
+				<mat-tab label="Leaving Soon">
+					<!-- <ng-template matTabContent> -->
+					<div class="home swiper-container" SwiperInit>
+						<div class="home swiper-wrapper">
 							<div class="swiper-slide" *ngFor="let ls of expire">
-								<app-flip-card
-									[data]="ls"
-									[colors]="cardStyle"
-								></app-flip-card>
+								<app-flip-card [data]="ls" [colors]="cardStyle"></app-flip-card>
 							</div>
 						</div>
-						<!-- Add Pagination -->
-						<div
-							class="swiper-pagination down-slide swiper-pagination-white"
-						></div>
-						<!-- Add Arrows -->
-						<div id="btnext-verti" class="swiper-button-next"></div>
-						<div id="btprev-verti" class="swiper-button-prev"></div>
+						<ng-container *ngTemplateOutlet="mobile ? '' : swiperExtra"></ng-container>
 					</div>
-					<!-- Initialize Swiper -->
-				</div>
-				<!--Ende von Leaving Sky-->
-			</div>
-			<!--Ende vom Container-->
+					<!-- </ng-template> -->
+				</mat-tab>
+			</mat-tab-group>
 		</div>
-		<!--Ende von Swiper Sky-->
-		<!--Beginn von Desktop Sky Logo-->
-		<div
-			class="column full-half-third is-hidden-touch-fernseher is-hidden-touch-landscape"
-		>
-			<div class="center-pic">
-				<img id="sky-logo" src="{{ serviceLogo }}" />
-			</div>
-		</div>
-		<!--Ende von Desktop Sky Logo-->
+		<ng-container *ngTemplateOutlet="mobile ? '' : Logo"></ng-container>
 	</div>
-	<!--Ende von Gapless column-->
 </div>
-<!--Ende von Sky X-->
+
+<ng-template #Logo>
+	<div class="column full-half-third center-pic">
+		<img id="sky-logo" src="{{ serviceLogo }}" />
+	</div>
+</ng-template>
+
+<ng-template #swiperExtra>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination down-slide swiper-pagination-white"></div>
+	<!-- Add Arrows -->
+	<div id="btnext-verti" class="swiper-button-next"></div>
+	<div id="btprev-verti" class="swiper-button-prev"></div>
+</ng-template>

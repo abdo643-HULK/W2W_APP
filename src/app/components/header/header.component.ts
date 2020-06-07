@@ -5,26 +5,31 @@ import {
 	HostListener,
 	AfterViewInit,
 	ElementRef,
-	Renderer2
+	Renderer2,
+	ViewChild,
 } from '@angular/core';
 
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
-	styleUrls: ['./header.component.css']
+	styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	/*_ref:any;*/
+
+	@ViewChild('nav_moving') private navbar: ElementRef;
+	// @ViewChild('navigation') private start: ElementRef;
+	start = this.hostElement.nativeElement;
 
 	y_position: number;
 	burgeropen: boolean = false;
 	nav_moved: boolean = true; //change color on desktop else bg black
 	options = {
-		threshold: 0
+		threshold: 0,
 	};
 	// observer = new IntersectionObserver(this.changeNavbar(),this.options);
 
-	constructor(private element: ElementRef, private renderer: Renderer2) {}
+	constructor(private hostElement: ElementRef, private rd: Renderer2) {}
 
 	ngOnInit() {
 		this.closeNavbarMenu();
@@ -46,12 +51,10 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	}
 
 	changeNavbar() {
-		const navbar = document.getElementById('nav-moving');
-		const start = document.getElementById('navigation');
-		console.log(navbar);
-		console.log(start);
-		var observer = new IntersectionObserver(entries => {
-			entries.forEach(entry => {
+		console.log(this.navbar);
+		console.log(this.start);
+		var observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
 				console.log('observing');
 				if (
 					entry.isIntersecting &&
@@ -59,7 +62,6 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 					window.innerWidth < 2200
 				) {
 					this.nav_moved = false;
-					// navbar.style.backgroundColor = "transparent";
 					console.log('transparent');
 				} else if (
 					!entry.isIntersecting &&
@@ -67,14 +69,13 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 					window.innerWidth < 2200
 				) {
 					this.nav_moved = true;
-					// navbar.style.backgroundColor = "black";
 					console.log('black');
 				} else {
 					observer.disconnect();
 				}
 			});
 		}, this.options);
-		observer.observe(start);
+		observer.observe(this.start);
 		console.log('observing');
 	}
 
@@ -103,7 +104,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 			let has_dropdown = Array.from(
 				document.getElementsByClassName('has-dropdown1')
 			);
-			has_dropdown.forEach(element => {
+			has_dropdown.forEach((element) => {
 				element.classList.remove('is-active');
 			});
 
@@ -115,27 +116,29 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 				.classList.remove('is-active');
 		});
 
-		Array.from(document.getElementsByClassName('menu-close')).forEach(e => {
-			e.addEventListener('click', () => {
-				document
-					.querySelector('.navbar-burger')
-					.classList.remove('is-active');
-				document
-					.querySelector('.navbar-menu')
-					.classList.remove('is-active');
-				document
-					.querySelector('.has-dropdown1')
-					.classList.remove('is-active');
-				document
-					.querySelector('.has-dropdown1')
-					.classList.remove('is-hoverable');
-				setTimeout(() => {
+		Array.from(document.getElementsByClassName('menu-close')).forEach(
+			(e) => {
+				e.addEventListener('click', () => {
+					document
+						.querySelector('.navbar-burger')
+						.classList.remove('is-active');
+					document
+						.querySelector('.navbar-menu')
+						.classList.remove('is-active');
 					document
 						.querySelector('.has-dropdown1')
-						.classList.add('is-hoverable');
-				}, 500);
-			});
-		});
+						.classList.remove('is-active');
+					document
+						.querySelector('.has-dropdown1')
+						.classList.remove('is-hoverable');
+					setTimeout(() => {
+						document
+							.querySelector('.has-dropdown1')
+							.classList.add('is-hoverable');
+					}, 500);
+				});
+			}
+		);
 	}
 
 	toggleBurger() {

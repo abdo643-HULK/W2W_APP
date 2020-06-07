@@ -1,101 +1,43 @@
-<!--Beginn von Netflix-->
 <div class="tile is-child">
-	<div class="columns box" style="background-color: #141414;">
-		<!--Beginn von Netflix Logo-->
-		<div class="column full-half-third">
-			<div class="center-pic">
-				<img
-					id="netflix-logo"
-					src="./assets/640px-Netflix_2015_logo.svg.png"
-				/>
-			</div>
+	<div class="columns box" style="background-color: #0f171e;">
+		<!--Beginn von Logo-->
+		<div class="column center-pic full-half-third">
+			<img id="netflix-logo" src="./assets/640px-Netflix_2015_logo.svg.png" />
 		</div>
-		<!--Ende von Netflix Logo Column-->
+		<!--Ende von Logo Column-->
 		<div class="column full-half-2third">
-			<div id="flex-col" class="tabs is-centered is-boxed">
-				<ul>
-					<li
-						class="netflixtab is-active"
-						(click)="
-							openTab(
-								$event,
-								'netflix-cs',
-								'netflix-tab',
-								'netflixtab'
-							)
-						"
-					>
-						<a>Recently Released</a>
-					</li>
-					<li
-						class="netflixtab"
-						(click)="
-							openTab(
-								$event,
-								'netflix-leaving',
-								'netflix-tab',
-								'netflixtab'
-							)
-						"
-					>
-						<a>Leaving Soon</a>
-					</li>
-				</ul>
-			</div>
-			<div class="container">
-				<!--Beginn von Coming Netflix-->
-				<div id="netflix-cs" class="netflix-tab">
-					<div class="home swiper-container">
-						<div #SwiperWrapperCS class="home swiper-wrapper">
-							<ng-container *ngFor="let cs of dataValue | async">
-								<app-flip-card
-									[data]="cs"
-									[colors]="cardStyle"
-								></app-flip-card>
-							</ng-container>
+			<mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+				<mat-tab label="Recently Released">
+					<div class="home swiper-container" SwiperInit>
+						<div class="home swiper-wrapper">
+							<div class="swiper-slide" *ngFor="let cs of dataValue | async">
+								<app-flip-card [data]="cs" [colors]="cardStyle"></app-flip-card>
+							</div>
 						</div>
-						<!-- Add Pagination -->
-						<div
-							class="swiper-pagination down-slide swiper-pagination-white"
-						></div>
-						<!-- Add Arrows -->
-						<div id="btnext-verti" class="swiper-button-next"></div>
-						<div id="btprev-verti" class="swiper-button-prev"></div>
+						<ng-container *ngTemplateOutlet="mobile ? '' : swiperExtra"></ng-container>
 					</div>
-					<!-- Initialize Swiper -->
-				</div>
-				<!--Ende von Coming Netflix-->
-				<!--Beginn von Leaving Netflix-->
-				<div
-					id="netflix-leaving"
-					class="netflix-tab"
-					style="display: none;"
-				>
-					<div class="home swiper-container">
-						<div #SwiperWrapperCS class="home swiper-wrapper">
-							<ng-container *ngFor="let ls of expire | async">
-								<app-flip-card
-									[data]="ls"
-									[colors]="cardStyle"
-								></app-flip-card>
-							</ng-container>
+				</mat-tab>
+				<mat-tab label="Leaving Soon">
+					<!-- <ng-template matTabContent> -->
+					<div class="home swiper-container" SwiperInit>
+						<div class="home swiper-wrapper">
+							<div class="swiper-slide" *ngFor="let ls of expire | async">
+								<app-flip-card [data]="ls" [colors]="cardStyle"></app-flip-card>
+							</div>
 						</div>
-						<!-- Add Pagination -->
-						<div
-							class="swiper-pagination down-slide swiper-pagination-white"
-						></div>
-						<!-- Add Arrows -->
-						<div id="btnext-verti" class="swiper-button-next"></div>
-						<div id="btprev-verti" class="swiper-button-prev"></div>
+						<ng-container *ngTemplateOutlet="mobile ? '' : swiperExtra"></ng-container>
 					</div>
-					<!-- Initialize Swiper -->
-				</div>
-				<!--Ende von Leaving Netflix-->
-			</div>
-			<!--Ende vom Container-->
+					<!-- </ng-template> -->
+				</mat-tab>
+			</mat-tab-group>
 		</div>
-		<!--Ende von Swiper Column-->
 	</div>
-	<!--Ende von Gapless column-->
 </div>
-<!--Ende von Netflix-->
+
+<ng-template #swiperExtra>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination down-slide swiper-pagination-white"></div>
+	<!-- Add Arrows -->
+	<div id="btnext-verti" class="swiper-button-next"></div>
+	<div id="btprev-verti" class="swiper-button-prev"></div>
+</ng-template>

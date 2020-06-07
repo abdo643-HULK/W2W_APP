@@ -2,110 +2,48 @@
 <div class="tile is-child">
 	<div class="columns box" style="background-color: #0f171e;">
 		<!--Beginn von Mobile Logo-->
-		<!-- <ng-template> -->
-		<div class="column full-half-third is-hidden-desktop-monitor">
-			<div class="center-pic">
-				<img id="prime-logo" src="{{ serviceLogo }}" />
-			</div>
-		</div>
-		<!-- </ng-template> -->
-
+		<ng-container *ngTemplateOutlet="mobile ? Logo : ''"></ng-container>
 		<!--Ende von Mobile Logo Column-->
 		<div class="column full-half-2third">
-			<div id="flex-col" class="tabs is-centered is-boxed">
-				<ul>
-					<li
-						class="primetab is-active"
-						(click)="
-							openTab($event, 'prime-cs', 'prime-tab', 'primetab')
-						"
-					>
-						<a>Coming Soon</a>
-					</li>
-					<li
-						class="primetab"
-						(click)="
-							openTab(
-								$event,
-								'prime-leaving',
-								'prime-tab',
-								'primetab'
-							)
-						"
-					>
-						<a>Leaving Soon</a>
-					</li>
-				</ul>
-			</div>
-			<div class="container">
-				<!--Beginn von Coming Prime-->
-				<div id="prime-cs" class="prime-tab">
-					<div class="home swiper-container">
-						<div #SwiperWrapperCS class="home swiper-wrapper">
+			<mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+				<mat-tab label="Recently Released">
+					<div class="home swiper-container" SwiperInit>
+						<div class="home swiper-wrapper">
 							<div class="swiper-slide" *ngFor="let cs of data">
-								<app-flip-card
-									[data]="cs"
-									[colors]="cardStyle"
-								></app-flip-card>
+								<app-flip-card [data]="cs" [colors]="cardStyle"></app-flip-card>
 							</div>
 						</div>
-						<!-- Add Pagination -->
-						<div
-							class="swiper-pagination down-slide swiper-pagination-white"
-						></div>
-						<!-- Add Arrows -->
-						<div id="btnext-verti" class="swiper-button-next"></div>
-						<div id="btprev-verti" class="swiper-button-prev"></div>
+						<ng-container *ngTemplateOutlet="mobile ? '' : swiperExtra"></ng-container>
 					</div>
-					<!-- Initialize Swiper -->
-				</div>
-				<!--Ende von Comning Prime-->
-				<!--Beginn von Leaving Prime-->
-				<div
-					id="prime-leaving"
-					class="prime-tab"
-					style="display: none;"
-				>
-					<div class="home swiper-container">
-						<div #SwiperWrapperLS class="home swiper-wrapper">
-							<div class="swiper-slide" *ngFor="let ls of expire">
-								<app-flip-card
-									[data]="ls"
-									[colors]="cardStyle"
-								></app-flip-card>
+				</mat-tab>
+				<mat-tab label="Leaving Soon">
+					<ng-template matTabContent>
+						<div class="home swiper-container" SwiperInit>
+							<div class="home swiper-wrapper">
+								<div class="swiper-slide" *ngFor="let ls of expire">
+									<app-flip-card [data]="ls" [colors]="cardStyle"></app-flip-card>
+								</div>
 							</div>
-							<!-- Add Pagination -->
-							<div
-								class="swiper-pagination down-slide swiper-pagination-white"
-							></div>
-							<!-- Add Arrows -->
-							<div
-								id="btnext-verti"
-								class="swiper-button-next"
-							></div>
-							<div
-								id="btprev-verti"
-								class="swiper-button-prev"
-							></div>
+							<ng-container *ngTemplateOutlet="mobile ? '' : swiperExtra"></ng-container>
 						</div>
-						<!-- Initialize Swiper -->
-					</div>
-					<!--Ende von Leaving Prime-->
-				</div>
-				<!--Ende von Container-->
-			</div>
-			<!--Ende von Swiper Column-->
+					</ng-template>
+				</mat-tab>
+			</mat-tab-group>
 		</div>
-		<!--Ende von Gapless column-->
-		<!--Beginn von Desktop Prime Logo-->
-		<div
-			class="column full-half-third is-hidden-touch-fernseher is-hidden-touch-landscape"
-		>
-			<div class="center-pic">
-				<img id="prime-logo" src="{{ serviceLogo }}" />
-			</div>
-		</div>
-		<!--Ende von Desktop Prime Logo Column-->
+		<ng-container *ngTemplateOutlet="mobile ? '' : Logo"></ng-container>
 	</div>
-	<!--Ende von Prime-->
 </div>
+
+<ng-template #Logo>
+	<div class="column center-pic full-half-third">
+		<img id="prime-logo" src="{{ serviceLogo }}" />
+	</div>
+</ng-template>
+
+<ng-template #swiperExtra>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination down-slide swiper-pagination-white"></div>
+	<!-- Add Arrows -->
+	<div id="btnext-verti" class="swiper-button-next"></div>
+	<div id="btprev-verti" class="swiper-button-prev"></div>
+</ng-template>

@@ -28,6 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared-module/shared-module.module';
 import { NavLogoComponent } from './components/header/components/nav-logo/nav-logo.component';
 import { SearchbarComponent } from './components/header/components/searchbar/searchbar.component';
+import { MaterialModule } from './material/material.module';
+import { SwiperInitDirective } from './directives/swiper-init.directive';
 
 @NgModule({
 	declarations: [
@@ -44,6 +46,7 @@ import { SearchbarComponent } from './components/header/components/searchbar/sea
 		IntersectionObserverDirective,
 		NavLogoComponent,
 		SearchbarComponent,
+		SwiperInitDirective,
 	],
 	imports: [
 		BrowserModule,
@@ -52,6 +55,7 @@ import { SearchbarComponent } from './components/header/components/searchbar/sea
 		// FontAwesomeModule,
 		BrowserAnimationsModule,
 		SharedModule,
+		MaterialModule,
 	],
 	exports: [],
 	providers: [],

@@ -2,10 +2,10 @@
 <div (window:resize)="initSwiperOnResize()" style="color: black;">
 	<div class="tile is-ancestor">
 		<div class="tile is-12 is-vertical is-parent">
-			<app-netflix-home></app-netflix-home>
-			<app-prime-home></app-prime-home>
-			<app-disney-home></app-disney-home>
-			<app-sky-home></app-sky-home>
+			<app-netflix-home [mobile]="mobile"></app-netflix-home>
+			<app-prime-home [mobile]="mobile"></app-prime-home>
+			<app-disney-home [mobile]="mobile"></app-disney-home>
+			<app-sky-home [mobile]="mobile"></app-sky-home>
 		</div>
 	</div>
 </div>

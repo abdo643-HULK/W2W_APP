@@ -4,98 +4,46 @@
 		<!--Beginn von Disney Logo-->
 		<div class="column full-half-third">
 			<div class="center-pic">
-				<img
-					id="disney-logo"
-					src="./assets/640px-Disney+_logo.svg.png"
-				/>
+				<img id="disney-logo" src="./assets/640px-Disney+_logo.svg.png" />
 			</div>
 		</div>
 		<!--Ende von Disney Logo-->
 		<div class="column full-half-2third">
-			<div id="flex-col" class="tabs is-centered is-boxed">
-				<ul>
-					<li
-						class="disneytab is-active"
-						(click)="
-							openTab(
-								$event,
-								'disney-cs',
-								'disney-tab',
-								'disneytab'
-							)
-						"
-					>
-						<a>Coming Soon</a>
-					</li>
-					<li
-						class="disneytab"
-						(click)="
-							openTab(
-								$event,
-								'disney-leaving',
-								'disney-tab',
-								'disneytab'
-							)
-						"
-					>
-						<a>Leaving Soon</a>
-					</li>
-				</ul>
-			</div>
-			<div class="container">
-				<!--Beginn von Coming Disney-->
-				<div id="disney-cs" class="disney-tab">
-					<div class="home swiper-container">
-						<div #SwiperWrapperCS class="home swiper-wrapper">
+			<mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+				<mat-tab label="Recently Released">
+					<div class="home swiper-container" SwiperInit>
+						<div class="home swiper-wrapper">
 							<div class="swiper-slide" *ngFor="let cs of data">
-								<app-flip-card
-									[data]="cs"
-									[colors]="cardStyle"
-								></app-flip-card>
+								<app-flip-card [data]="cs" [colors]="cardStyle"></app-flip-card>
 							</div>
 						</div>
-						<!-- Add Pagination -->
-						<div
-							class="swiper-pagination down-slide swiper-pagination-white"
-						></div>
-						<!-- Add Arrows -->
-						<div id="btnext-verti" class="swiper-button-next"></div>
-						<div id="btprev-verti" class="swiper-button-prev"></div>
+						<ng-container *ngTemplateOutlet="mobile ? '' : swiperExtra"></ng-container>
 					</div>
-					<!-- Initialize Swiper -->
-				</div>
-				<!--Ende von Coming Disney-->
-				<!--Beginn von Leaving Disney-->
-				<div
-					id="disney-leaving"
-					class="disney-tab"
-					style="display: none;"
-				>
-					<div class="home swiper-container">
-						<div #SwiperWrapperCS class="home swiper-wrapper">
+				</mat-tab>
+				<mat-tab label="Leaving Soon">
+					<!-- <ng-template matTabContent> -->
+					<div class="home swiper-container" SwiperInit>
+						<div class="home swiper-wrapper">
 							<div class="swiper-slide" *ngFor="let ls of expire">
-								<app-flip-card
-									[data]="ls"
-									[colors]="cardStyle"
-								></app-flip-card>
+								<app-flip-card [data]="ls" [colors]="cardStyle"></app-flip-card>
 							</div>
 						</div>
-						<!-- Add Pagination -->
-						<div
-							class="swiper-pagination down-slide swiper-pagination-white"
-						></div>
-						<!-- Add Arrows -->
-						<div id="btnext-verti" class="swiper-button-next"></div>
-						<div id="btprev-verti" class="swiper-button-prev"></div>
+						<ng-container *ngTemplateOutlet="mobile ? '' : swiperExtra"></ng-container>
 					</div>
-					<!-- Initialize Swiper -->
-				</div>
-				<!--Ende von Leaving Disney-->
-			</div>
-			<!--Ende vom Container-->
+					<!-- </ng-template> -->
+				</mat-tab>
+			</mat-tab-group>
+			<!--Ende von Swiper Column-->
 		</div>
-		<!--Ende von Swiper Column-->
+		<!--Ende von Gapless column-->
 	</div>
-	<!--Ende von Gapless column-->
 </div>
 <!--Ende von Disney+-->
+
+<ng-template #swiperExtra>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination down-slide swiper-pagination-white"></div>
+	<!-- Add Arrows -->
+	<div id="btnext-verti" class="swiper-button-next"></div>
+	<div id="btprev-verti" class="swiper-button-prev"></div>
+</ng-template>

@@ -1,20 +1,5 @@
-import {
-	Component,
-	OnInit,
-	ElementRef,
-	EventEmitter,
-	Input,
-	Output,
-	AfterViewInit,
-	Renderer2,
-	ViewChild,
-} from '@angular/core';
-import {
-	HttpClient,
-	HttpHeaders,
-	HttpParams,
-	HttpResponse,
-} from '@angular/common/http';
+import { Component, OnInit, ElementRef, EventEmitter, Input, Output, AfterViewInit, Renderer2, ViewChild } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { map, switchMap, debounceTime, distinct, filter } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 // import { Observable } from 'rxjs/internal/Observable';
@@ -48,6 +33,8 @@ interface Item {
 	styleUrls: ['./netflix-home.component.css'],
 })
 export class NetflixHomeComponent implements OnInit {
+	@Input() mobile: boolean;
+
 	days = '7';
 	country = 'DE';
 	dataValue: Observable<Item[]>;
@@ -63,15 +50,10 @@ export class NetflixHomeComponent implements OnInit {
 
 	headers = new HttpHeaders()
 		.set('x-rapidapi-host', 'unogs-unogs-v1.p.rapidapi.com')
-		.set(
-			'x-rapidapi-key',
-			'2e75f12489msh4881df0eea4530ap1d9974jsnb1c9075c37c4'
-		)
+		.set('x-rapidapi-key', '2e75f12489msh4881df0eea4530ap1d9974jsnb1c9075c37c4')
 		.append('Content-Type', 'application/json');
 
-	constructor(
-		private http: HttpClient /*, public element: ElementRef, private rd: Renderer2*/
-	) {
+	constructor(private http: HttpClient /*, public element: ElementRef, private rd: Renderer2*/) {
 		// this.getNew();
 		// this.getLeaving();
 	}
@@ -82,28 +64,21 @@ export class NetflixHomeComponent implements OnInit {
 			debounceTime(500),
 			distinct(),
 			filter((term) => !!term),
-			switchMap((term) =>
-				this.http
-					.get<NetflixData>(`${term}`)
-					.pipe(
-						map((csdata) => csdata.ITEMS.map((item) => item.title))
-					)
-			)
+			switchMap((term) => this.http.get<NetflixData>(`${term}`).pipe(map((csdata) => csdata.ITEMS.map((item) => item.title))))
 		);
 	}
 
 	getNew() {
-		const url = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Anew${
-			this.days || 7
-		}%3A${this.country || 'DE'}&p=1&t=ns&st=adv`;
+		const url = `https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Anew${this.days || 7}%3A${
+			this.country || 'DE'
+		}&p=1&t=ns&st=adv`;
 		this.dataValue = this.http
 			.get<NetflixData>(url, { headers: this.headers })
 			.pipe(map((csdata) => csdata.ITEMS));
 	}
 	// getLeaving() : Observable<NetflixData[]>{
 	getLeaving() {
-		const url =
-			'https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Aexp%3ADE&t=ns&st=adv&p=1';
+		const url = 'https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Aexp%3ADE&t=ns&st=adv&p=1';
 		this.expire = this.http
 			.get<NetflixData>(url, { headers: this.headers })
 			.pipe(map((lsdata) => lsdata.ITEMS || []));
@@ -112,9 +87,7 @@ export class NetflixHomeComponent implements OnInit {
 	ngOnInit() {}
 
 	openTab(evt, tabName: string, swipertab: string, servicetab: string) {
-		var i: number,
-			x,
-			tablinks: HTMLCollectionOf<Element> | { className: string }[];
+		var i: number, x, tablinks: HTMLCollectionOf<Element> | { className: string }[];
 		x = document.getElementsByClassName(swipertab);
 		for (i = 0; i < x.length; i++) {
 			x[i].style.display = 'none';

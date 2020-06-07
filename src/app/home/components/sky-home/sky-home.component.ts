@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LEAVING_CONTENT, COMING_CONTENT } from '../../../data/list';
 
 @Component({
@@ -7,6 +7,7 @@ import { LEAVING_CONTENT, COMING_CONTENT } from '../../../data/list';
 	styleUrls: ['./sky-home.component.css'],
 })
 export class SkyHomeComponent implements OnInit {
+	@Input() mobile: boolean;
 	serviceLogo = './assets/skyq-nav.svg';
 	data = COMING_CONTENT;
 	expire = LEAVING_CONTENT;

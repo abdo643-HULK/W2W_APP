@@ -110,15 +110,17 @@
 	/*Swiper-verti*/
 	.swiper-container,
 	.swiper-wrapper {
+		flex-wrap: wrap;
+		flex-direction: row;
 		height: 20vw;
 	}
 
+	/*Swiper-verti*/
 	.swiper-slide {
 		width: calc(100% / 3.4);
 		height: 20vw;
 		border-radius: 5%;
-		margin-left: 10px;
-		margin-bottom: 0px !important;
+		font-size: 18px;
 	}
 
 	#btprev-verti {
@@ -163,8 +165,7 @@
 		right: 10px;
 		left: auto;
 	}
-	.swiper-container-vertical
-		> .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+	.swiper-container-vertical > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
 		top: 55%;
 		-webkit-transform: translateY(-50%);
 		transform: translateY(-50%);
@@ -251,8 +252,7 @@
 		right: 10px;
 		left: auto;
 	}
-	.swiper-container-vertical
-		> .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+	.swiper-container-vertical > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
 		top: 55%;
 		-webkit-transform: translateY(-50%);
 		transform: translateY(-50%);

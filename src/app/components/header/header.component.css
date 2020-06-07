@@ -20,11 +20,18 @@ a.navbar-item:hover {
 #navigation {
 	height: 3.25rem;
 }
+:host() {
+	height: 3.25rem;
+}
 @media screen and (min-width: 1024px) and (max-width: 2200px) and (orientation: landscape) {
 	.navbar {
 		background-color: transparent;
 	}
 	#navigation {
+		position: absolute;
+	}
+	:host() {
+		width: 100%;
 		position: absolute;
 	}
 }
@@ -248,6 +255,10 @@ input::-webkit-input-placeholder {
 		font-size: 35px;
 	}
 	#navigation {
+		position: relative;
+		height: 82px;
+	}
+	:host() {
 		position: relative;
 		height: 82px;
 	}

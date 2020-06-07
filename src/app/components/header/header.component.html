@@ -1,47 +1,33 @@
 <!--Navbar-->
 <!-- (scroll)="changeNavbar($event)" -->
-<section id="navigation">
+<section #navigation>
 	<nav
-		id="nav-moving"
+		#nav_moving
 		[style.backgroundColor]="nav_moved ? 'black' : 'transparent'"
 		class="navbar is-fixed-top"
 		role="navigation"
 		aria-label="main navigation"
 	>
 		<div class="navbar-brand">
-			<a
-				class="navbar-item"
-				routerLink=""
-				routerLinkActive="active-link"
-				[routerLinkActiveOptions]="{ exact: true }"
-			>
-				<img
-					id="w2w-logo"
-					src="assets/W2W_Logo_V2.png"
-					width="80"
-					height="30"
-				/>
+			<a class="navbar-item" routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+				<img id="w2w-logo" src="assets/W2W_Logo_V2.png" width="80" height="30" />
 			</a>
 			<a
 				role="button"
-				(click)="toggleBurger()"
 				class="navbar-burger burger"
-				[ngClass]="burgeropen ? 'is-active' : ''"
 				aria-label="menu"
 				aria-expanded="false"
 				data-target="top-nav"
 				style="color: white;"
+				(click)="toggleBurger()"
+				[ngClass]="burgeropen ? 'is-active' : ''"
 			>
 				<span aria-hidden="true"></span>
 				<span aria-hidden="true"></span>
 				<span aria-hidden="true"></span>
 			</a>
 		</div>
-		<div
-			id="top-nav"
-			class="navbar-menu"
-			[ngClass]="burgeropen ? 'is-active' : ''"
-		>
+		<div id="top-nav" class="navbar-menu" [ngClass]="burgeropen ? 'is-active' : ''">
 			<div class="navbar-start">
 				<div class="menu-close">
 					<a
@@ -54,39 +40,19 @@
 						Home
 						<div class="underline"></div>
 					</a>
-					<a
-						id="netflix"
-						class="navbar-item item"
-						routerLink="netflix"
-						routerLinkActive="active-link"
-					>
+					<a id="netflix" class="navbar-item item" routerLink="netflix" routerLinkActive="active-link">
 						Netflix
 						<div class="underline"></div>
 					</a>
-					<a
-						id="prime"
-						class="navbar-item item"
-						routerLink="prime"
-						routerLinkActive="active-link"
-					>
+					<a id="prime" class="navbar-item item" routerLink="prime" routerLinkActive="active-link">
 						Prime
 						<div class="underline"></div>
 					</a>
-					<a
-						id="disney"
-						class="navbar-item item"
-						routerLink="disney+"
-						routerLinkActive="active-link"
-					>
+					<a id="disney" class="navbar-item item" routerLink="disney+" routerLinkActive="active-link">
 						Disney+
 						<div class="underline"></div>
 					</a>
-					<a
-						id="skyx"
-						class="navbar-item item"
-						routerLink="skyx"
-						routerLinkActive="active-link"
-					>
+					<a id="skyx" class="navbar-item item" routerLink="skyx" routerLinkActive="active-link">
 						Sky X
 						<div class="underline"></div>
 					</a>
@@ -97,30 +63,17 @@
 					</a>
 					<div class="navbar-dropdown">
 						<div class="menu-close">
-							<a
-								class="navbar-item item"
-								(click)="openPage($event)"
-							>
+							<a class="navbar-item item" (click)="openPage($event)">
 								About
 							</a>
-							<a
-								class="navbar-item item"
-								(click)="openPage($event)"
-							>
+							<a class="navbar-item item" (click)="openPage($event)">
 								Jobs
 							</a>
-							<a
-								class="navbar-item item"
-								(click)="openPage($event)"
-							>
+							<a class="navbar-item item" (click)="openPage($event)">
 								Contact
 							</a>
 							<hr class="navbar-divider" />
-							<a
-								class="navbar-item item"
-								routerLink="contact"
-								routerLinkActive="active-link"
-							>
+							<a class="navbar-item item" routerLink="contact" routerLinkActive="active-link">
 								Report an issue
 							</a>
 						</div>

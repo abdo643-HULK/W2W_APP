@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LEAVING_CONTENT, COMING_CONTENT } from '../../../data/list';
 
 @Component({
@@ -10,6 +10,8 @@ export class DisneyHomeComponent implements OnInit {
 	data = COMING_CONTENT;
 	expire = LEAVING_CONTENT;
 	cardStyle = 'white';
+	@Input() mobile: boolean;
+
 	constructor() {}
 	ngOnInit() {}
 	openTab(evt, tabName, swipertab, servicetab) {
@@ -20,10 +22,7 @@ export class DisneyHomeComponent implements OnInit {
 		}
 		tablinks = document.getElementsByClassName(servicetab);
 		for (i = 0; i < x.length; i++) {
-			tablinks[i].className = tablinks[i].className.replace(
-				' is-active',
-				''
-			);
+			tablinks[i].className = tablinks[i].className.replace(' is-active', '');
 		}
 		document.getElementById(tabName).style.display = '';
 		evt.currentTarget.className += ' is-active';

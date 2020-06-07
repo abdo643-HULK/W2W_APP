@@ -80,7 +80,6 @@ p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100%;
 	width: 100%;
 	max-height: 100%;
 	max-width: 100%;
@@ -110,100 +109,6 @@ p {
 	.full-half-2third {
 		width: 67%;
 		flex: 0 0 67%;
-	}
-}
-
-/*Handy-Fernseher*/
-@media screen and (max-width: 1439px) and (orientation: portrait) {
-	.is-hidden-touch-fernseher {
-		display: none !important;
-	}
-}
-@media screen and (max-width: 1023px) and (orientation: landscape) {
-	.is-hidden-touch-landscape {
-		display: none !important;
-	}
-}
-@media screen and (min-width: 2201px) {
-	.is-hidden-touch-fernseher {
-		display: none !important;
-	}
-}
-
-/*Desktop-Laptop*/
-@media screen and (min-width: 1024px) and (max-width: 2200px) and (orientation: landscape) {
-	.is-hidden-desktop-monitor {
-		display: none !important;
-	}
-}
-@media screen and (min-width: 1440px) and (orientation: portrait) {
-	.is-hidden-desktop-monitor {
-		display: none !important;
-	}
-}
-/*Hidden non TV*/
-@media screen and (max-width: 2559px) {
-	.is-hidden-non-TV {
-		display: none !important;
-	}
-}
-/*Hidden on TV*/
-@media screen and (min-width: 2201px) {
-	.is-hidden-TV {
-		display: none !important;
-	}
-}
-@media screen and (max-width: 768px) {
-	.is-hidden-mobile {
-		display: none !important;
-	}
-}
-
-@media screen and (min-width: 769px), print {
-	.is-hidden-tablet {
-		display: none !important;
-	}
-}
-
-@media screen and (min-width: 769px) and (max-width: 1023px) {
-	.is-hidden-tablet-only {
-		display: none !important;
-	}
-}
-
-@media screen and (max-width: 1023px) {
-	.is-hidden-touch {
-		display: none !important;
-	}
-}
-
-@media screen and (min-width: 1024px) {
-	.is-hidden-desktop {
-		display: none !important;
-	}
-}
-
-@media screen and (min-width: 1024px) and (max-width: 1215px) {
-	.is-hidden-desktop-only {
-		display: none !important;
-	}
-}
-
-@media screen and (min-width: 1216px) {
-	.is-hidden-widescreen {
-		display: none !important;
-	}
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-	.is-hidden-widescreen-only {
-		display: none !important;
-	}
-}
-
-@media screen and (min-width: 1408px) {
-	.is-hidden-fullhd {
-		display: none !important;
 	}
 }
 
