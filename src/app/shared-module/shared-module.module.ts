@@ -10,7 +10,7 @@ import { BillboardComponent } from '../components/billboard/billboard.component'
 import { SwiperComponent } from '../components/swiper/swiper.component';
 import { DialogComponent } from '../components/dialog/dialog.component';
 import { SwiperInitDirective } from '../directives/swiper-init.directive';
-import { NavbarColorDirective } from '../navbar-color.directive';
+import { NavbarColorDirective } from '../directives/navbar-color.directive';
 import { IntersectionObserverDirective } from '../directives/intersectionObserver.directive';
 
 @NgModule({

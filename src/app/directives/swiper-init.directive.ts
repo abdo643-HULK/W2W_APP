@@ -13,9 +13,11 @@ export class SwiperInitDirective implements OnInit, AfterViewInit {
 		console.log(this.el);
 		// this.swiperInit();
 	}
+
 	ngAfterViewInit() {
 		this.swiperInit();
 	}
+
 	@HostListener('window:resize') reInitSwiper() {
 		console.log('resize');
 		this.mySwiper.destroy(true, true);

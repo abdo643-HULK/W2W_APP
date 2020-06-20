@@ -1,4 +1,7 @@
 import { SwiperInitDirective } from './swiper-init.directive';
+let elRefMock = {
+	nativeElement: document.createElement('div'),
+};
 
 describe('SwiperInitDirective', () => {
 	it('should create an instance', () => {

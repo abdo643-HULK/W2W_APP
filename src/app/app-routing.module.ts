@@ -11,31 +11,26 @@ const routes: Routes = [
 	},
 	{
 		path: 'netflix',
-		loadChildren: () =>
-			import('./netflix/netflix.module').then((m) => m.NetflixModule),
+		loadChildren: () => import('./netflix/netflix.module').then((m) => m.NetflixModule),
 	},
 	{
 		path: 'prime',
-		loadChildren: () =>
-			import('./prime/prime.module').then((m) => m.PrimeModule),
+		loadChildren: () => import('./prime/prime.module').then((m) => m.PrimeModule),
 	},
 	{
 		path: 'disney+',
-		loadChildren: () =>
-			import('./disney-plus/disney-plus.module').then(
-				(m) => m.DisneyPlusModule
-			),
+		loadChildren: () => import('./disney-plus/disney-plus.module').then((m) => m.DisneyPlusModule),
 	},
 	{
 		path: 'skyx',
-		loadChildren: () =>
-			import('./sky-x/sky-x.module').then((m) => m.SkyXModule),
+		loadChildren: () => import('./sky-x/sky-x.module').then((m) => m.SkyXModule),
 	},
 	{
 		path: 'contact',
-		loadChildren: () =>
-			import('./contact/contact.module').then((m) => m.ContactModule),
+		loadChildren: () => import('./contact/contact.module').then((m) => m.ContactModule),
 	},
+	{ path: '**', component: HomeComponent },
+	// { path: '**', component: PageNotFoundComponent }, // Wildcard route for a 404 page
 ];
 
 @NgModule({

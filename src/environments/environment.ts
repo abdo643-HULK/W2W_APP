@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+	production: false,
+	API_URL: 'https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3A',
+	API_HOST: 'unogs-unogs-v1.p.rapidapi.com',
+	API_KEY: 'e2675b9ce4msh7d6419ebfcdbfccp1cd25ejsn984fd22dc4fc',
 };
 
 /*

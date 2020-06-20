@@ -6,11 +6,11 @@
 		</div>
 		<!--Ende von Logo Column-->
 		<div class="column full-half-2third">
-			<mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+			<mat-tab-group mat-stretch-tabs>
 				<mat-tab label="Recently Released">
 					<div class="home swiper-container" SwiperInit>
 						<div class="home swiper-wrapper">
-							<div class="swiper-slide" *ngFor="let cs of dataValue | async">
+							<div class="swiper-slide" *ngFor="let cs of dataValue$ | async">
 								<app-flip-card [data]="cs" [colors]="cardStyle"></app-flip-card>
 							</div>
 						</div>
@@ -21,7 +21,7 @@
 					<!-- <ng-template matTabContent> -->
 					<div class="home swiper-container" SwiperInit>
 						<div class="home swiper-wrapper">
-							<div class="swiper-slide" *ngFor="let ls of expire | async">
+							<div class="swiper-slide" *ngFor="let ls of expire$ | async">
 								<app-flip-card [data]="ls" [colors]="cardStyle"></app-flip-card>
 							</div>
 						</div>

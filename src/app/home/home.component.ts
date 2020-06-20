@@ -5,6 +5,7 @@ import {
 	Inject,
 	OnChanges,
 	SimpleChanges,
+	HostListener,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Swiper, Navigation, Pagination } from 'swiper/js/swiper.esm.js';
@@ -25,6 +26,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnChanges {
 	constructor(@Inject(DOCUMENT) private _document, public dialog: MatDialog) {}
 	ngOnChanges(changes: SimpleChanges): void {
 		// throw new Error("Method not implemented.");
+	}
+
+	@HostListener('window:resize') reInit() {
+		this.setMobile();
 	}
 
 	detectSize() {
