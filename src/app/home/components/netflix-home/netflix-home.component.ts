@@ -44,14 +44,7 @@ export class NetflixHomeComponent implements OnInit {
 	cardStyle = 'white';
 
 	private isDataAvailable: boolean = false;
-	@ViewChild('SwiperWrapperCS') cs: ElementRef;
-	@ViewChild('SwiperWrapperLS') ls: ElementRef;
 	@Output() tab = new EventEmitter();
-
-	headers = new HttpHeaders()
-		.set('x-rapidapi-host', 'unogs-unogs-v1.p.rapidapi.com')
-		.set('x-rapidapi-key', '2e75f12489msh4881df0eea4530ap1d9974jsnb1c9075c37c4')
-		.append('Content-Type', 'application/json');
 
 	constructor(private http: HttpClient /*, public element: ElementRef, private rd: Renderer2*/) {
 		// this.getNew();
