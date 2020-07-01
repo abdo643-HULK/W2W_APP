@@ -1,0 +1,14 @@
+<div class="home swiper-container">
+	<div class="home swiper-wrapper">
+		<div class="swiper-slide" *ngFor="let data of inputData">
+			<app-flip-card [data]="data" [colors]="cardStyle"></app-flip-card>
+		</div>
+	</div>
+	<ng-template *ngIf="!mobile">
+		<!-- Add Pagination -->
+		<div class="swiper-pagination down-slide swiper-pagination-white"></div>
+		<!-- Add Arrows -->
+		<div id="btnext-verti" class="swiper-button-next"></div>
+		<div id="btprev-verti" class="swiper-button-prev"></div>
+	</ng-template>
+</div>

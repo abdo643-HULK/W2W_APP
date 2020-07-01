@@ -1,0 +1,43 @@
+<div class="tile is-child">
+	<div class="columns box" style="background-color: #0f171e;">
+		<!--Beginn von Logo-->
+		<div class="column center-pic full-half-third">
+			<img id="netflix-logo" src="./assets/640px-Netflix_2015_logo.svg.png" />
+		</div>
+		<!--Ende von Logo Column-->
+		<div class="column full-half-2third">
+			<mat-tab-group mat-stretch-tabs>
+				<mat-tab label="Recently Released">
+					<div class="home swiper-container" SwiperInit>
+						<div class="home swiper-wrapper">
+							<div class="swiper-slide" *ngFor="let cs of dataValue$ | async">
+								<app-flip-card [data]="cs" [colors]="cardStyle"></app-flip-card>
+							</div>
+						</div>
+						<ng-container *ngTemplateOutlet="mobile ? '' : swiperExtra"></ng-container>
+					</div>
+				</mat-tab>
+				<mat-tab label="Leaving Soon">
+					<!-- <ng-template matTabContent> -->
+					<div class="home swiper-container" SwiperInit>
+						<div class="home swiper-wrapper">
+							<div class="swiper-slide" *ngFor="let ls of expire$ | async">
+								<app-flip-card [data]="ls" [colors]="cardStyle"></app-flip-card>
+							</div>
+						</div>
+						<ng-container *ngTemplateOutlet="mobile ? '' : swiperExtra"></ng-container>
+					</div>
+					<!-- </ng-template> -->
+				</mat-tab>
+			</mat-tab-group>
+		</div>
+	</div>
+</div>
+
+<ng-template #swiperExtra>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination down-slide swiper-pagination-white"></div>
+	<!-- Add Arrows -->
+	<div id="btnext-verti" class="swiper-button-next"></div>
+	<div id="btprev-verti" class="swiper-button-prev"></div>
+</ng-template>
